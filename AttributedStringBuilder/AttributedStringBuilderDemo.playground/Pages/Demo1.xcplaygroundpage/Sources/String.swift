@@ -12,6 +12,11 @@ public extension String {
             .bold()
     }
 
+    func italic() -> AttributedString {
+        AttributedString(self)
+            .italic()
+    }
+
     func localized() -> AttributedString {
         .init(localized: LocalizationValue(self))
     }
