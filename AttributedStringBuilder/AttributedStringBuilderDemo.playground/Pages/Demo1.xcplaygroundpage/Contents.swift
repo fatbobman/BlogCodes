@@ -1,4 +1,5 @@
 import Cocoa
+import Foundation
 import PlaygroundSupport
 import SwiftUI
 
@@ -7,7 +8,7 @@ struct DemoView: View {
 
     @AttributedStringBuilder
     var text: Text {
-        "_*Hello*_"
+        "~_Hello_~"
             .localized()
             .color(.green)
 
@@ -20,6 +21,7 @@ struct DemoView: View {
             " Girl!"
                 .color(.pink)
                 .bold()
+                .italic()
         }
 
         let count = 5
@@ -56,3 +58,16 @@ enum Gender {
 }
 
 PlaygroundPage.current.setLiveView(DemoView())
+
+@AttributedStringBuilder
+var text: Text {
+    "Hello world"
+}
+
+var text1: Text {
+    let _a = AttributedStringBuilder.buildExpression("Hello world")
+    let _blockResult = AttributedStringBuilder.buildBlock(_a)
+    return AttributedStringBuilder.buildFinalResult(_blockResult)
+}
+
+text1

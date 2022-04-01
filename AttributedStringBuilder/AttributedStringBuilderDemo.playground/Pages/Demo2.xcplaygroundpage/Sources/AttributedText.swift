@@ -24,10 +24,20 @@ public extension AttributedText {
     }
 
     func color(_ color: Color) -> AttributedText {
-        transform { $0.foregroundColor = color }
+        transform {
+            $0 = $0.color(color)
+        }
     }
 
     func bold() -> AttributedText {
-        transform { $0.inlinePresentationIntent = .stronglyEmphasized }
+        transform {
+            $0 = $0.bold()
+        }
+    }
+
+    func italic() -> AttributedText {
+        transform {
+            $0 = $0.italic()
+        }
     }
 }

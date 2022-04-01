@@ -6,13 +6,16 @@ import SwiftUI
 var attributedText: AttributedText {
     // 类似 SwiftUI 的 Group
     Container {
-        "~Hello~ "
+        "Hello "
             .localized()
             .color(.red)
+            .bold()
 
-        "_**World**_"
+        "~World~"
             .localized()
     }
+    .color(.green)
+    .italic()
 
     // 新段落
     Paragraph {
