@@ -3,11 +3,35 @@ import SwiftUI
 
 public extension AttributedString {
     func color(_ color: Color) -> AttributedString {
-        then { $0.foregroundColor = color }
+        then {
+            $0.foregroundColor = color
+        }
     }
 
     func bold() -> AttributedString {
-        then { $0.inlinePresentationIntent = .stronglyEmphasized }
+        return then {
+            if var inlinePresentationIntent = $0.inlinePresentationIntent {
+                var container = AttributeContainer()
+                inlinePresentationIntent.insert(.stronglyEmphasized)
+                container.inlinePresentationIntent = inlinePresentationIntent
+                let _ = $0.mergeAttributes(container)
+            } else {
+                $0.inlinePresentationIntent = .stronglyEmphasized
+            }
+        }
+    }
+
+    func italic() -> AttributedString {
+        return then {
+            if var inlinePresentationIntent = $0.inlinePresentationIntent {
+                var container = AttributeContainer()
+                inlinePresentationIntent.insert(.emphasized)
+                container.inlinePresentationIntent = inlinePresentationIntent
+                let _ = $0.mergeAttributes(container)
+            } else {
+                $0.inlinePresentationIntent = .emphasized
+            }
+        }
     }
 
     func then(_ perform: (inout Self) -> Void) -> Self {
