@@ -57,16 +57,3 @@ enum Gender {
 }
 
 PlaygroundPage.current.setLiveView(DemoView())
-
-@AttributedStringBuilder
-var text: Text {
-    "Hello world"
-}
-
-var text1: Text {
-    let _a = AttributedStringBuilder.buildExpression("Hello world")
-    let _blockResult = AttributedStringBuilder.buildBlock(_a)
-    return AttributedStringBuilder.buildFinalResult(_blockResult)
-}
-
-text1
