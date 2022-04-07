@@ -40,7 +40,7 @@ public enum AttributedStringBuilder {
     }
 
     public static func buildLimitedAvailability(_ component: AttributedString) -> AttributedString {
-        .init("")
+        component
     }
 
     public static func buildFinalResult(_ component: AttributedString) -> Text {
