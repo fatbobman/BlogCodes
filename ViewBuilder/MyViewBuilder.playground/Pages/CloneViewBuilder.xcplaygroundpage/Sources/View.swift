@@ -120,6 +120,10 @@ public extension View {
         modifier(_OverlayModifier(overlay: overlay))
     }
 
+    func overlay<Overlay>(@ViewBuilder _ overlay: () -> Overlay) -> some View where Overlay: View {
+        modifier(_OverlayModifier(overlay: overlay()))
+    }
+
     func id<ID>(_ id: ID) -> some View where ID: Hashable {
         IDView(self, id: id)
     }
