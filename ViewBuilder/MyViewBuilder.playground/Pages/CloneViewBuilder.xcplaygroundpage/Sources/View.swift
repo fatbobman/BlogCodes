@@ -98,6 +98,9 @@ public extension Text {
     }
 
     func foregroundColor(_ color: Color?) -> Text {
+        guard !modifiers.contains(where: {
+            if case .color = $0 { return true } else { return false }
+        }) else { return self }
         var text = self
         text.modifiers.append(.color(color))
         return text
