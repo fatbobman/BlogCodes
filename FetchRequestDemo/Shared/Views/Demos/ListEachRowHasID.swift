@@ -38,7 +38,7 @@ struct ListEachRowHasID: View {
                 List {
                     ForEach(items) { item in
                         ItemRow(item: item)
-//                            .id(item.objectID)
+                            .id(item.objectID)
                     }
                 }
             }
