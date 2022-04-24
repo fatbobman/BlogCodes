@@ -19,7 +19,7 @@ struct ListEachRowHasID: View {
     )
     private var items: FetchedResults<Item>
 
-    @State var showLastOne = false
+    @State var showInfo = false
     var body: some View {
         ScrollViewReader { proxy in
             VStack {
@@ -43,14 +43,14 @@ struct ListEachRowHasID: View {
                 }
             }
         }
-        .navigationTitle("默认")
+        .navigationTitle("每行均通过id标识")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             Button("Info") {
-                showLastOne.toggle()
+                showInfo.toggle()
             }
         }
-        .sheet(isPresented: $showLastOne, content: { info() })
+        .sheet(isPresented: $showInfo, content: { info() })
         .onAppear {
             print(Date().timeIntervalSince(Timer.demo2))
         }

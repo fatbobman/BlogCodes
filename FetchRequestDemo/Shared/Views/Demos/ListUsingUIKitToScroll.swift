@@ -21,7 +21,7 @@ struct ListUsingUIKitToScroll: View {
     )
     private var items: FetchedResults<Item>
 
-    @State var showLastOne = false
+    @State var showInfo = false
     @State var tableView: UITableView?
     var body: some View {
         VStack {
@@ -48,14 +48,14 @@ struct ListUsingUIKitToScroll: View {
 //                }
 //            }
         }
-        .navigationTitle("默认")
+        .navigationTitle("通过UIKit方式滚动")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             Button("Info") {
-                showLastOne.toggle()
+                showInfo.toggle()
             }
         }
-        .sheet(isPresented: $showLastOne, content: { info() })
+        .sheet(isPresented: $showInfo, content: { info() })
         .onAppear {
             print(Date().timeIntervalSince(Timer.demo4))
         }

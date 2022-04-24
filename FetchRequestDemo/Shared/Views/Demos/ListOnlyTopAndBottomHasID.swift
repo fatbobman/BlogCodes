@@ -19,7 +19,7 @@ struct ListOnlyTopAndBottomHasID: View {
     )
     private var items: FetchedResults<Item>
 
-    @State var showLastOne = false
+    @State var showInfo = false
     var body: some View {
         ScrollViewReader { proxy in
             VStack {
@@ -50,14 +50,14 @@ struct ListOnlyTopAndBottomHasID: View {
                 .environment(\.defaultMinListRowHeight, 0)
             }
         }
-        .navigationTitle("默认")
+        .navigationTitle("仅标识列表两端")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             Button("Info") {
-                showLastOne.toggle()
+                showInfo.toggle()
             }
         }
-        .sheet(isPresented: $showLastOne, content: { info() })
+        .sheet(isPresented: $showInfo, content: { info() })
         .onAppear {
             print(Date().timeIntervalSince(Timer.demo3))
         }

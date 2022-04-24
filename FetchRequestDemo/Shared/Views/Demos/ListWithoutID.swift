@@ -19,21 +19,21 @@ struct ListWithoutID: View {
     )
     private var items: FetchedResults<Item>
 
-    @State var showLastOne = false
+    @State var showInfo = false
     var body: some View {
         List {
             ForEach(items) { item in
                 ItemRow(item: item)
             }
         }
-        .navigationTitle("默认")
+        .navigationTitle("不支持滚动")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             Button("Info") {
-                showLastOne.toggle()
+                showInfo.toggle()
             }
         }
-        .sheet(isPresented: $showLastOne, content: { lastOne() })
+        .sheet(isPresented: $showInfo, content: { lastOne() })
         .onAppear {
             print(Date().timeIntervalSince(Timer.demo1))
         }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		764215162814C5C300B2936F /* ShowTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764215152814C5C300B2936F /* ShowTime.swift */; };
 		76D7950C2810E09700838597 /* FetchRequestDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 76D794F92810E09400838597 /* FetchRequestDemo.xcdatamodeld */; };
 		76D7950E2810E09700838597 /* FetchRequestDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D794FB2810E09400838597 /* FetchRequestDemoApp.swift */; };
 		76D795102810E09700838597 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D794FC2810E09400838597 /* ContentView.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		764215152814C5C300B2936F /* ShowTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowTime.swift; sourceTree = "<group>"; };
 		76D794FA2810E09400838597 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		76D794FB2810E09400838597 /* FetchRequestDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchRequestDemoApp.swift; sourceTree = "<group>"; };
 		76D794FC2810E09400838597 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 			children = (
 				76D795242810E13800838597 /* CoreData */,
 				76D794FB2810E09400838597 /* FetchRequestDemoApp.swift */,
+				764215152814C5C300B2936F /* ShowTime.swift */,
 				76D7956B2811302000838597 /* Views */,
 				76D794FE2810E09700838597 /* Assets.xcassets */,
 			);
@@ -205,6 +208,7 @@
 				76D795202810E12F00838597 /* Item+CoreDataClass.swift in Sources */,
 				76D7958028127FC800838597 /* Timer.swift in Sources */,
 				76D7957A2812182900838597 /* ListUsingUIKitToScroll.swift in Sources */,
+				764215162814C5C300B2936F /* ShowTime.swift in Sources */,
 				76D7950C2810E09700838597 /* FetchRequestDemo.xcdatamodeld in Sources */,
 				76D795122810E09700838597 /* Persistence.swift in Sources */,
 				76D7950E2810E09700838597 /* FetchRequestDemoApp.swift in Sources */,
