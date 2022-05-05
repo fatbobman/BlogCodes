@@ -11,5 +11,6 @@
         <page name='Transition'/>
         <page name='CustomTransition'/>
         <page name='TextAnimatedColor'/>
+        <page name='BindingTransaction'/>
     </pages>
 </playground>

@@ -12,7 +12,7 @@ struct Demo2: View {
                 .fill(red ? .red : .blue)
                 .frame(width: 30, height: 30)
                 .offset(x: x)
-//                .animation(.easeInOut(duration: 1))
+                .animation(.easeInOut(duration: 1))
 //                .animation(.easeInOut(duration: 1), value: x)
 //                .animation(.easeInOut(duration: 1), value: y)
             Spacer()

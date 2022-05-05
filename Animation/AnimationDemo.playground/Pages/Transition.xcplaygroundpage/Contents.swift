@@ -1,6 +1,6 @@
+import Foundation
 import PlaygroundSupport
 import SwiftUI
-import Foundation
 
 struct TransitionDemo: View {
     @State var show = true
@@ -14,27 +14,27 @@ struct TransitionDemo: View {
             }
             Spacer()
             Button(show ? "Hide" : "Show") {
+                // 当时在运动结束前再次点击，可中断动画，且保留原始视图
                 show.toggle()
             }
         }
-        .animation(.easeInOut(duration:3), value: show)
+        .animation(.easeInOut(duration: 3), value: show)
         .frame(width: 300, height: 300)
     }
 }
 
-struct SubView:View{
+struct SubView: View {
     @StateObject var store = Store()
-    var body:some View{
+    var body: some View {
         Text("World")
     }
 }
 
-class Store:ObservableObject {
-    init(){print("init")}
+class Store: ObservableObject {
+    init() { print("init") }
     deinit {
         print("deinit")
     }
 }
 
 PlaygroundPage.current.setLiveView(TransitionDemo())
-
