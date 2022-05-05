@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <playground version='6.0' target-platform='macos' buildActiveScheme='true' importAppTypes='true'>
     <pages>
-        <page name='Page1'/>
-        <page name='Page2'/>
+        <page name='Demo1'/>
+        <page name='Demo2'/>
+        <page name='AnimatableDemo1'/>
+        <page name='Demo3'/>
+        <page name='Demo4'/>
+        <page name='AnimatableDemo2'/>
+        <page name='withTransaction'/>
+        <page name='Transition'/>
+        <page name='CustomTransition'/>
+        <page name='TextAnimatedColor'/>
     </pages>
 </playground>
