@@ -21,4 +21,4 @@ struct Demo: View {
     }
 }
 
-PlaygroundPage.current.setLiveView(Demo(animation: nil))
+PlaygroundPage.current.setLiveView(Demo(animation: .easeInOut))
