@@ -22,9 +22,7 @@ struct Demo2: View {
                 } else {
                     x = 0
                 }
-                withAnimation(.easeInOut(duration: 1)) {
-                    red.toggle()
-                }
+                red.toggle()
             }
         }
         .frame(width: 500, height: 300)
@@ -32,4 +30,3 @@ struct Demo2: View {
 }
 
 PlaygroundPage.current.setLiveView(Demo2())
-
