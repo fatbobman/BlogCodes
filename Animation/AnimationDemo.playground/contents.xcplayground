@@ -13,5 +13,7 @@
         <page name='TextAnimatedColor'/>
         <page name='BindingTransaction'/>
         <page name='IsContinuous'/>
+        <page name='KeyFrameAnimation1'/>
+        <page name='KeyFrameAnimation2'/>
     </pages>
 </playground>

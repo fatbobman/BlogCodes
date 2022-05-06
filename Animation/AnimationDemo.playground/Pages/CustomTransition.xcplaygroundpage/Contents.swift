@@ -28,13 +28,17 @@ struct CustomTransitionDemo: View {
                 Text("World")
                     .transition(.rotation.combined(with: .opacity))
             }
+
             Spacer()
             Button(show ? "Hide" : "Show") {
                 show.toggle()
             }
         }
-        .animation(.easeInOut, value: show)
+        .animation(.easeInOut(duration: 2), value: show)
         .frame(width: 300, height: 300)
+        .onChange(of:show){
+            print($0)
+        }
     }
 }
 
