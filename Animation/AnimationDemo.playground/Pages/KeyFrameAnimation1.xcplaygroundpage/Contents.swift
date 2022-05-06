@@ -1,7 +1,7 @@
 import PlaygroundSupport
 import SwiftUI
 
-// 代码来自 https://swiftui-lab.com/swiftui-animations-part4/ ，已修改了原代码中不兼容的部分
+// 代码来自 https://swiftui-lab.com/swiftui-animations-part4/
 
 struct KeyFrame {
     let offset: TimeInterval
@@ -27,19 +27,14 @@ let keyframes = [
 ]
 
 struct JumpingEmoji: View {
-    let dates: [Date] = {
-        var current = Date.now
-        return keyframes.map {
-            current = current.addingTimeInterval($0.offset)
-            return current
-        }
-    }()
+    // Use all offset, minus the first
+    let offsets = Array(keyframes.map { $0.offset }.dropFirst())
 
     var body: some View {
-        TimelineView(.explicit(dates)) { timeline in
+        TimelineView(.cyclic(timeOffsets: offsets)) { timeline in
             HappyEmoji(date: timeline.date)
         }
-        .frame(width: 300, height: 400)
+        .frame(width: 400, height: 400)
     }
 }
 
@@ -78,6 +73,35 @@ struct HappyEmoji: View {
                 .rotationEffect(Angle(degrees: keyframe.rotation))
                 .offset(y: keyframe.y)
         }
+    }
+}
+
+struct CyclicTimelineSchedule: TimelineSchedule {
+    let timeOffsets: [TimeInterval]
+
+    func entries(from startDate: Date, mode: TimelineScheduleMode) -> Entries {
+        Entries(last: startDate, offsets: timeOffsets)
+    }
+
+    struct Entries: Sequence, IteratorProtocol {
+        var last: Date
+        let offsets: [TimeInterval]
+
+        var idx: Int = -1
+
+        mutating func next() -> Date? {
+            idx = (idx + 1) % offsets.count
+
+            last = last.addingTimeInterval(offsets[idx])
+
+            return last
+        }
+    }
+}
+
+extension TimelineSchedule where Self == CyclicTimelineSchedule {
+    static func cyclic(timeOffsets: [TimeInterval]) -> CyclicTimelineSchedule {
+        .init(timeOffsets: timeOffsets)
     }
 }
 
