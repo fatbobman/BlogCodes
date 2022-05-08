@@ -1,20 +1,6 @@
 import Combine
 import Foundation
 
-class T: ObservableObject {
-    @MyPublished var name = "hello"
-    var cancellable: AnyCancellable?
-    var longName = "" {
-        didSet {
-            print("get new \(longName)")
-        }
-    }
-
-    init() {
-        cancellable = $name.assign(to: \.longName, on: self)
-    }
-}
-
 @propertyWrapper
 public struct MyPublished<Value> {
     public var wrappedValue: Value {
@@ -65,42 +51,16 @@ public struct MyPublished<Value> {
     }
 }
 
-// let t = T()
-// let a = t.objectWillChange.sink(receiveValue: {
-//    print($0, "changed")
-// })
-// t.name = "dfs"
-// print(t.myName)
-
-class TT: ObservableObject {
-    @MyPublished var name = "fat"
-//    var c:AnyCancellable?
+class T: ObservableObject {
+    @MyPublished var name = "hello"
+    init() {}
 }
 
-let t = T()
+let object = T()
 
-let a = t.objectWillChange.sink(receiveValue: {
-    print($0, "changed")
+let cancellable = object.objectWillChange.sink(receiveValue: {
+    print("object will changed")
 })
 
-t.name = "bobman"
-t.name = "bobman"
-
-// import SwiftUI
-//
-// struct TestView:View{
-//    @StateObject var t = TT()
-//    var body: some View{
-//        VStack{
-//            let _ = print(t.name)
-//            Text(t.name)
-//            Button("asd"){
-//                t.name = String(Int.random(in: 0...100))
-//            }
-//        }
-//    }
-// }
-//
-// import PlaygroundSupport
-//
-// PlaygroundPage.current.setLiveView(TestView())
+object.name = "fat"
+print(object.name)

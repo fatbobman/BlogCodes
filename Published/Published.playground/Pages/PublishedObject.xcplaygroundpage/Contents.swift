@@ -9,9 +9,6 @@ public struct PublishedObject<Value: ObservableObject> {
 
     public init(wrappedValue: Value) {
         self.wrappedValue = wrappedValue
-        cancellable = wrappedValue.objectWillChange.sink(receiveValue: { [holder] _ in
-            holder.notificationSender?()
-        })
     }
 
     public static subscript<OuterSelf: ObservableObject>(
@@ -20,62 +17,50 @@ public struct PublishedObject<Value: ObservableObject> {
         storage storageKeyPath: ReferenceWritableKeyPath<OuterSelf, Self>
     ) -> Value {
         get {
-            print("get")
-            observed[keyPath: storageKeyPath].setSender(observed)
+            if observed[keyPath: storageKeyPath].enclosingInstanceWillChange == nil,
+               observed[keyPath: storageKeyPath].cancellable == nil {
+                observed[keyPath: storageKeyPath].setup(observed)
+            }
             return observed[keyPath: storageKeyPath].wrappedValue
         }
         set {
-            print("set") // replace whole wrappedValue
-            if let subject = observed.objectWillChange as? ObservableObjectPublisher
-            {
+            if let subject = observed.objectWillChange as? ObservableObjectPublisher {
                 subject.send()
             }
             observed[keyPath: storageKeyPath].wrappedValue = newValue
         }
     }
 
-    class Holder{
-        var notificationSender: (() -> Void)?
-        init(){}
-    }
-
-    private var cancellable:AnyCancellable?
-    let holder = Holder()
-
-    private mutating func setSender<OuterSelf:ObservableObject>(_ enclosingInstance:OuterSelf){
-        guard holder.notificationSender == nil,let subject = enclosingInstance.objectWillChange as? ObservableObjectPublisher else {return}
-        holder.notificationSender = { [weak subject] in
-           print("inner change")
-           subject?.send()
-        }
-    }
-}
-
-class Obj: ObservableObject {
-    @Published var age = 10
-}
-
-class Demo: ObservableObject {
-    @Published var name = "fat"
-    @PublishedObject var obj = Obj()
-
     var cancellable: AnyCancellable?
-    init() {
-        cancellable = obj.objectWillChange.sink(receiveValue: {
-            print("changed", $0)
-            print(self.obj.age)
+    var enclosingInstanceWillChange: (() -> Void)?
+
+    private mutating func setup<OuterSelf: ObservableObject>(_ enclosingInstance: OuterSelf) {
+        guard let subject = enclosingInstance.objectWillChange as? ObservableObjectPublisher else { return }
+        enclosingInstanceWillChange = { [weak subject] in
+            subject?.send()
+        }
+        guard cancellable == nil else { return }
+        cancellable = wrappedValue.objectWillChange.sink(receiveValue: { [enclosingInstanceWillChange] _ in
+            enclosingInstanceWillChange?()
         })
     }
 }
 
+class SubObject: ObservableObject {
+    @Published var count = 10
+}
 
-let d = Demo()
-let a = d.objectWillChange.sink(receiveValue: { _ in
-    print("d changed")
+class Object: ObservableObject {
+    @PublishedObject var obj = SubObject()
+
+    init() {}
+}
+
+let object = Object()
+let cancellable = object.objectWillChange.sink(receiveValue: { _ in
+    print("object will change")
 })
 
+object.obj.count = 100
 
-d.obj.age = 100
-d.obj.age = 200
-
-print(d.obj.age)
+print(object.obj.count)
