@@ -15,33 +15,24 @@ public struct PublishedObject<Value: ObservableObject> {
         _enclosingInstance observed: OuterSelf,
         wrapped wrappedKeyPath: ReferenceWritableKeyPath<OuterSelf, Value>,
         storage storageKeyPath: ReferenceWritableKeyPath<OuterSelf, Self>
-    ) -> Value {
+    ) -> Value where OuterSelf.ObjectWillChangePublisher == ObservableObjectPublisher {
         get {
-            if observed[keyPath: storageKeyPath].enclosingInstanceWillChange == nil,
-               observed[keyPath: storageKeyPath].cancellable == nil {
+            if observed[keyPath: storageKeyPath].cancellable == nil {
                 observed[keyPath: storageKeyPath].setup(observed)
             }
             return observed[keyPath: storageKeyPath].wrappedValue
         }
         set {
-            if let subject = observed.objectWillChange as? ObservableObjectPublisher {
-                subject.send()
-            }
+            observed.objectWillChange.send()
             observed[keyPath: storageKeyPath].wrappedValue = newValue
         }
     }
 
     var cancellable: AnyCancellable?
-    var enclosingInstanceWillChange: (() -> Void)?
 
-    private mutating func setup<OuterSelf: ObservableObject>(_ enclosingInstance: OuterSelf) {
-        guard let subject = enclosingInstance.objectWillChange as? ObservableObjectPublisher else { return }
-        enclosingInstanceWillChange = { [weak subject] in
-            subject?.send()
-        }
-        guard cancellable == nil else { return }
-        cancellable = wrappedValue.objectWillChange.sink(receiveValue: { [enclosingInstanceWillChange] _ in
-            enclosingInstanceWillChange?()
+    private mutating func setup<OuterSelf: ObservableObject>(_ enclosingInstance: OuterSelf) where OuterSelf.ObjectWillChangePublisher == ObservableObjectPublisher {
+        cancellable = wrappedValue.objectWillChange.sink(receiveValue: { [weak enclosingInstance] _ in
+            (enclosingInstance?.objectWillChange)?.send()
         })
     }
 }
