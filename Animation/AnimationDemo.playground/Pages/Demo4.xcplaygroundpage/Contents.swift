@@ -16,7 +16,7 @@ struct Demo4: View {
                 withAnimation(.linear) {
                     if x == 0 { x = 100 } else { x = 0 }
                 }
-                withAnimation(.easeInOut) {
+                withAnimation(.easeInOut(duration: 1.5)) {
                     if y == 0 { y = 100 } else { y = 0 }
                 }
             }

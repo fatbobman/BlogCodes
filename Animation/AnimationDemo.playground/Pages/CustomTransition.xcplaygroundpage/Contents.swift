@@ -22,21 +22,23 @@ struct CustomTransitionDemo: View {
     @State var show = true
     var body: some View {
         VStack {
-            Spacer()
-            Text("Hello")
-            if show {
-                Text("World")
-                    .transition(.rotation.combined(with: .opacity))
+            VStack {
+                Spacer()
+                Text("Hello")
+                if show {
+                    Text("World")
+                        .transition(.rotation.combined(with: .opacity))
+                }
+                Spacer()
             }
-
-            Spacer()
+            .animation(.easeInOut(duration: 2), value: show)
             Button(show ? "Hide" : "Show") {
                 show.toggle()
             }
         }
-        .animation(.easeInOut(duration: 2), value: show)
+//        .animation(.easeInOut(duration: 2), value: show) // 如果在这里设置，对 Button 的文字同样有影响
         .frame(width: 300, height: 300)
-        .onChange(of:show){
+        .onChange(of: show) {
             print($0)
         }
     }
