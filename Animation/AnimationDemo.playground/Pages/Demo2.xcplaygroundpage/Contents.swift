@@ -14,7 +14,7 @@ struct Demo2: View {
                 .offset(x: x)
                 .animation(.easeInOut(duration: 1))
 //                .animation(.easeInOut(duration: 1), value: x)
-//                .animation(.easeInOut(duration: 1), value: y)
+//                .animation(.easeInOut(duration: 1), value: red)
             Spacer()
             Button("Animate") {
                 if x == 0 {
