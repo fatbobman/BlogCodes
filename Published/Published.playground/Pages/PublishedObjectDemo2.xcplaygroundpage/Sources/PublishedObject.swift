@@ -35,22 +35,3 @@ public struct PublishedObject<Value: ObservableObject> {
         })
     }
 }
-
-class SubObject: ObservableObject {
-    @Published var count = 10
-}
-
-class Object: ObservableObject {
-    @PublishedObject var obj = SubObject()
-
-    init() {}
-}
-
-let object = Object()
-let cancellable = object.objectWillChange.sink(receiveValue: { _ in
-    print("object will change")
-})
-
-object.obj.count = 100
-
-print(object.obj.count)

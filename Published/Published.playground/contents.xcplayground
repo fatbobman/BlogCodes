@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <playground version='6.0' target-platform='macos' display-mode='raw' buildActiveScheme='true' importAppTypes='true'>
     <pages>
-        <page name='Untitled Page 2'/>
-        <page name='Published'/>
         <page name='PublishedObject'/>
+        <page name='MyPublished'/>
+        <page name='Published'/>
+        <page name='Untitled Page'/>
     </pages>
 </playground>
