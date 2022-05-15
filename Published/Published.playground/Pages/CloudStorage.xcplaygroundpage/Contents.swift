@@ -18,6 +18,9 @@ struct DemoView: View {
             Toggle("Ready", isOn: $settings.readyForAction)
                 .toggleStyle(.switch)
             TextField("Speed", value: $settings.speed, format: .number)
+            Text("Name: \(settings.name)")
+            Text("Speed: ") + Text(settings.speed, format: .number)
+            Text("ReadyForAction: ") + Text(settings.readyForAction ? "True" : "False")
         }
         .frame(width: 400, height: 400)
     }

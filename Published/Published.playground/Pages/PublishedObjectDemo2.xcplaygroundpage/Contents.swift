@@ -5,11 +5,26 @@ import SwiftUI
 
 let container = CoreDataHelper.createNSPersistentContainer()
 
-class Test: ObservableObject {
+class Store: ObservableObject {
     @PublishedObject var event = Event(context: container.viewContext)
+
+    init() {
+        event.timestamp = Date().addingTimeInterval(-1000)
+    }
 }
 
-let test = Test()
-let c1 = test.objectWillChange.sink { print("object will change") }
+struct DemoView: View {
+    @StateObject var store = Store()
+    var body: some View {
+        VStack {
+            Text(store.event.timestamp, format: .dateTime)
+            Button("Now") {
+                store.event.timestamp = .now
+            }
+        }
+        .frame(width: 300, height: 300)
+    }
+}
 
-test.event.timestamp = Date()
+PlaygroundPage.current.setLiveView(DemoView())
+

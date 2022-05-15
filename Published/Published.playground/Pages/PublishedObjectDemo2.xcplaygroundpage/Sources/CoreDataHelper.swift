@@ -50,5 +50,5 @@ public enum CoreDataHelper {
 
 @objc(Event)
 public class Event: NSManagedObject {
-    @NSManaged public var timestamp: Date?
+    @NSManaged public var timestamp: Date
 }
