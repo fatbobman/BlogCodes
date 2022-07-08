@@ -29,9 +29,9 @@ private struct MyFlexFrameLayout: Layout, ViewModifier {
 
         let contentWidth = content.sizeThatFits(proposal).width
         if let idealWidth, proposal.width == nil {
-            resultWidth = idealWidth
+            resultWidth = idealWidth // fixedSize(horizontal:true)
         } else if minWidth == nil, maxWidth == nil {
-            resultWidth = contentWidth
+            resultWidth = contentWidth // 没有在横向维度上进行设置
         } else if let minWidth, let maxWidth {
             resultWidth = clamp(min: minWidth, max: maxWidth, source: proposal.width ?? contentWidth)
         } else if let minWidth {
@@ -105,5 +105,41 @@ public extension View {
         }
 
         return modifier(MyFlexFrameLayout(minWidth: minWidth, idealWidth: idealWidth, maxWidth: maxWidth, minHeight: minHeight, idealHeight: idealHeight, maxHeight: maxHeight, alignment: alignment))
+    }
+}
+
+struct MyFlexFrame_Preview:PreviewProvider{
+    static var previews: some View{
+        HStack{
+            let str = "山不在高，有仙则名。水不在深，有龙则灵。斯是陋室，惟吾德馨。苔痕上阶绿，草色入帘青。谈笑有鸿儒，往来无白丁。可以调素琴，阅金经。无丝竹之乱耳，无案牍之劳形。南阳诸葛庐，西蜀子云亭。孔子云：何陋之有？"
+
+            VStack(alignment: .leading) {
+                Text(str)
+                    .frame(width: 30, alignment: .leading)
+                    .fixedSize(horizontal: false, vertical: false)
+                    .border(.red)
+
+                Text(str)
+                    .myFrame(width: 30, alignment: .leading)
+                    .fixedSize(horizontal: false, vertical: false)
+                    .border(.red)
+
+            }
+            .frame(width:50)
+            .border(.red)
+
+            VStack {
+                Text(str)
+                    .frame(maxWidth: 200,  maxHeight: 200,alignment: .trailingLastTextBaseline)
+                    .border(.red)
+                    .fixedSize(horizontal: true, vertical: false)
+
+                Text(str)
+                    .myFrame(maxWidth: 200, maxHeight: 200,alignment:.trailingLastTextBaseline)
+                    .border(.red)
+                    .myFixedSize(horizontal: true, vertical: false)
+            }
+            .frame(width: 300)
+        }
     }
 }

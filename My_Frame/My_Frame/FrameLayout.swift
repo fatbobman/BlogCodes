@@ -43,12 +43,18 @@ private struct MyFrameLayout: Layout, ViewModifier {
     }
 
     func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
-        guard subviews.count == 2, let background = subviews.first, let content = subviews.last else { fatalError("Can't use MyFrameLayout directly") }
+        guard subviews.count == 2, let background = subviews.first, let content = subviews.last else {
+            fatalError("Can't use MyFrameLayout directly")
+        }
+        // background is Color.clear
         background.place(at: .zero, anchor: .topLeading, proposal: .init(width: bounds.width, height: bounds.height))
+        // get alignment guide position of background
         let backgroundDimensions = background.dimensions(in: .init(width: bounds.width, height: bounds.height))
         let offsetX = backgroundDimensions[alignment.horizontal]
         let offsetY = backgroundDimensions[alignment.vertical]
+        // get alignment guide from content
         let contentDimensions = content.dimensions(in: .init(width: bounds.width, height: bounds.height))
+        // 计算 content 的 topLeading 偏移量
         let leading = offsetX - contentDimensions[alignment.horizontal] + bounds.minX
         let top = offsetY - contentDimensions[alignment.vertical] + bounds.minY
         content.place(at: .init(x: leading, y: top), anchor: .topLeading, proposal: .init(width: bounds.width, height: bounds.height))
@@ -71,5 +77,76 @@ public extension View {
     @available(*, deprecated, message: "Please pass one or more parameters.")
     func myFrame() -> some View {
         modifier(MyFrameLayout(width: nil, height: nil, alignment: .center))
+    }
+}
+
+struct MyFrame_Preview: PreviewProvider {
+    static var previews: some View {
+        Grid {
+            GridRow {
+                Text("frame")
+                Text("myFrame")
+            }
+
+            GridRow {
+                Text("Hello world")
+                    .frame(width: nil, height: nil)
+                    .border(.red)
+
+                Text("Hello world")
+                    .myFrame(width: nil, height: nil)
+                    .border(.red)
+            }
+
+            GridRow {
+                Text("Hello world")
+                    .frame(width: 30)
+                    .border(.red)
+
+                Text("Hello world")
+                    .myFrame(width: 30)
+                    .border(.red)
+            }
+
+            GridRow {
+                Rectangle()
+                    .frame(width: 50, height: 50)
+                    .border(.red)
+
+                Rectangle()
+                    .myFrame(width: 50, height: 50)
+                    .border(.red)
+            }
+
+            GridRow {
+                Text("Hello world")
+                    .frame(height: 50)
+                    .border(.red)
+
+                Text("Hello world")
+                    .myFrame(height: 50)
+                    .border(.red)
+            }
+
+            GridRow {
+                Text("Hello world")
+                    .frame(width: 100, height: 100, alignment: .leadingFirstTextBaseline)
+                    .border(.red)
+
+                Text("Hello world")
+                    .myFrame(width: 100, height: 100, alignment: .leadingFirstTextBaseline)
+                    .border(.red)
+            }
+
+            GridRow {
+                Text("Hello world")
+                    .frame(width: 100, height: 100, alignment: .bottomLeading)
+                    .border(.red)
+
+                Text("Hello world")
+                    .myFrame(width: 100, height: 100, alignment: .bottomLeading)
+                    .border(.red)
+            }
+        }
     }
 }
