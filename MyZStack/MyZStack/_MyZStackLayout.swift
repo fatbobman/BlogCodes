@@ -19,15 +19,15 @@ private struct _MyZStackLayout: Layout {
         .init()
     }
 
-    // 容器的父视图（父容器）将通过调用容器的 sizeThatFits 获取容器的理想尺寸,本方法通常会被多次调用,并提供不同的建议尺寸
+    // 容器的父视图（父容器）将通过调用容器的 sizeThatFits 获取容器的需求尺寸,本方法通常会被多次调用,并提供不同的建议尺寸
     func sizeThatFits(
         proposal: ProposedViewSize, // 容器的父视图（父容器）提供的建议尺寸
         subviews: Subviews, // 当前容器内的所有子视图的代理
-        cache: inout CacheInfo // 缓存数据，本例中用于保存子视图的返回的理想尺寸,减少调用次数
+        cache: inout CacheInfo // 缓存数据，本例中用于保存子视图的返回的需求尺寸,减少调用次数
     ) -> CGSize {
         cache = .init() // 清除缓存
         for subview in subviews {
-            // 为子视图提供建议尺寸,获取子视图的理想尺寸 (ViewDimensions)
+            // 为子视图提供建议尺寸,获取子视图的需求尺寸 (ViewDimensions)
             let viewDimension = subview.dimensions(in: proposal)
             // 根据 MyZStack 的 alignment 的设置获取子视图的 alignmentGuide
             let alignmentGuide: CGPoint = .init(
@@ -49,12 +49,12 @@ private struct _MyZStackLayout: Layout {
         return cache.cropBounds.size
     }
 
-    // 容器的父视图(父容器)将在需要的时机调用本方法,为本容器的子视图设置真实位置
+    // 容器的父视图(父容器)将在需要的时机调用本方法,为本容器的子视图设置渲染位置
     func placeSubviews(
         in bounds: CGRect, // 根据当前容器在 sizeThatFits 提供的尺寸,在真实渲染处创建的 CGRect
         proposal: ProposedViewSize, // 容器的父视图（父容器）提供的建议尺寸
         subviews: Subviews, // 当前容器内的所有子视图的代理
-        cache: inout CacheInfo // 缓存数据，本例中用于保存子视图的返回的理想尺寸,减少调用次数
+        cache: inout CacheInfo // 缓存数据，本例中用于保存子视图的返回的需求尺寸,减少调用次数
     ) {
         // 虚拟画布左上角的偏移值 ( 到 0,0 )
         let offsetX = cache.cropBounds.minX * -1
@@ -65,7 +65,7 @@ private struct _MyZStackLayout: Layout {
             // 将虚拟画布中的位置信息转换成渲染 bounds 的位置信息
             let x = transformPoint(original: info.bounds.minX, offset: offsetX, targetBoundsMinX: bounds.minX)
             let y = transformPoint(original: info.bounds.minY, offset: offsetY, targetBoundsMinX: bounds.minY)
-            // 将转换后的位置信息设置到子视图上
+            // 将转换后的位置信息设置到子视图上，并为子视图设置渲染尺寸
             subviews[index].place(at: .init(x: x, y: y), anchor: .topLeading, proposal: proposal)
         }
     }
