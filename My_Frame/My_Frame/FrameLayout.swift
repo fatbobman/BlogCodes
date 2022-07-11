@@ -120,10 +120,12 @@ struct MyFrame_Preview: PreviewProvider {
 
             GridRow {
                 Text("Hello world")
+                    .border(.blue)
                     .frame(height: 50)
                     .border(.red)
 
                 Text("Hello world")
+                    .border(.blue)
                     .myFrame(height: 50)
                     .border(.red)
             }

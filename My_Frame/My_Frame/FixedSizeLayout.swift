@@ -30,10 +30,8 @@ private struct MyFixedSizeLayout: Layout, ViewModifier {
         guard subviews.count == 1, let content = subviews.first else {
             fatalError("Can't use MyFixedSizeLayout directly")
         }
-        let width = horizontal ? nil : bounds.width
-        let height = vertical ? nil : bounds.height
 
-        content.place(at: .init(x: bounds.minX, y: bounds.minY), anchor: .topLeading, proposal: .init(width: width, height: height))
+        content.place(at: .init(x: bounds.minX, y: bounds.minY), anchor: .topLeading, proposal: .init(width: bounds.width, height: bounds.height))
     }
 
     func body(content: Content) -> some View {

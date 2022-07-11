@@ -69,6 +69,7 @@ private struct MyFlexFrameLayout: Layout, ViewModifier {
         content.place(at: .init(x: leading, y: top), anchor: .topLeading, proposal: .init(width: bounds.width, height: bounds.height))
     }
 
+    // 将值限制在最小和最大之间
     func clamp(min: CGFloat?, max: CGFloat?, source: CGFloat) -> CGFloat {
         var result: CGFloat = source
         if let min {
@@ -90,6 +91,7 @@ private struct MyFlexFrameLayout: Layout, ViewModifier {
 
 public extension View {
     func myFrame(minWidth: CGFloat? = nil, idealWidth: CGFloat? = nil, maxWidth: CGFloat? = nil, minHeight: CGFloat? = nil, idealHeight: CGFloat? = nil, maxHeight: CGFloat? = nil, alignment: Alignment = .center) -> some View {
+        // 判断是否 min < ideal < max
         func areInNondecreasingOrder(
             _ min: CGFloat?, _ ideal: CGFloat?, _ max: CGFloat?
         ) -> Bool {
@@ -99,6 +101,7 @@ public extension View {
             return min <= ideal && ideal <= max
         }
 
+        // SwiftUI 官方实现在数值错误的情况下仍会执行，但会在控制台显示错误信息。
         if !areInNondecreasingOrder(minWidth, idealWidth, maxWidth)
             || !areInNondecreasingOrder(minHeight, idealHeight, maxHeight) {
             fatalError("Contradictory frame constraints specified.")
