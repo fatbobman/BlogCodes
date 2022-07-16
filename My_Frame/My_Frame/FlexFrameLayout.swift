@@ -32,8 +32,6 @@ private struct MyFlexFrameLayout: Layout, ViewModifier {
             resultWidth = idealWidth // fixedSize(horizontal:true)
         } else if minWidth == nil, maxWidth == nil {
             resultWidth = contentWidth // 没有在横向维度上进行设置
-        } else if let minWidth, let maxWidth {
-            resultWidth = clamp(min: minWidth, max: maxWidth, source: proposal.width ?? contentWidth)
         } else if let minWidth {
             resultWidth = clamp(min: minWidth, max: maxWidth, source: contentWidth)
         } else if let maxWidth {
@@ -45,8 +43,6 @@ private struct MyFlexFrameLayout: Layout, ViewModifier {
             resultHeight = idealHeight
         } else if minHeight == nil, maxHeight == nil {
             resultHeight = contentHeight
-        } else if let minHeight, let maxHeight {
-            resultHeight = clamp(min: minHeight, max: maxHeight, source: proposal.height ?? contentHeight)
         } else if let minHeight {
             resultHeight = clamp(min: minHeight, max: maxHeight, source: contentHeight)
         } else if let maxHeight {
@@ -111,9 +107,9 @@ public extension View {
     }
 }
 
-struct MyFlexFrame_Preview:PreviewProvider{
-    static var previews: some View{
-        HStack{
+struct MyFlexFrame_Preview: PreviewProvider {
+    static var previews: some View {
+        HStack {
             let str = "山不在高，有仙则名。水不在深，有龙则灵。斯是陋室，惟吾德馨。苔痕上阶绿，草色入帘青。谈笑有鸿儒，往来无白丁。可以调素琴，阅金经。无丝竹之乱耳，无案牍之劳形。南阳诸葛庐，西蜀子云亭。孔子云：何陋之有？"
 
             VStack(alignment: .leading) {
@@ -126,23 +122,30 @@ struct MyFlexFrame_Preview:PreviewProvider{
                     .myFrame(width: 30, alignment: .leading)
                     .fixedSize(horizontal: false, vertical: false)
                     .border(.red)
-
             }
-            .frame(width:50)
+            .frame(width: 50)
             .border(.red)
 
             VStack {
                 Text(str)
-                    .frame(maxWidth: 200,  maxHeight: 200,alignment: .trailingLastTextBaseline)
+                    .frame(maxWidth: 200, maxHeight: 200, alignment: .trailingLastTextBaseline)
                     .border(.red)
                     .fixedSize(horizontal: true, vertical: false)
 
                 Text(str)
-                    .myFrame(maxWidth: 200, maxHeight: 200,alignment:.trailingLastTextBaseline)
+                    .myFrame(maxWidth: 200, maxHeight: 200, alignment: .trailingLastTextBaseline)
                     .border(.red)
                     .myFixedSize(horizontal: true, vertical: false)
             }
             .frame(width: 300)
+
+            VStack {
+                Text(str)
+                    .frame(maxWidth: 150, maxHeight: 100)
+
+                Text(str)
+                    .myFrame(maxWidth: 150, maxHeight: 100)
+            }
         }
     }
 }
