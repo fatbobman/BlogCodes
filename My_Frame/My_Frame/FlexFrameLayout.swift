@@ -32,6 +32,8 @@ private struct MyFlexFrameLayout: Layout, ViewModifier {
             resultWidth = idealWidth // fixedSize(horizontal:true)
         } else if minWidth == nil, maxWidth == nil {
             resultWidth = contentWidth // 没有在横向维度上进行设置
+        } else if let minWidth, let maxWidth {
+            resultWidth = clamp(min: minWidth, max: maxWidth, source: proposal.width ?? contentWidth)
         } else if let minWidth {
             resultWidth = clamp(min: minWidth, max: maxWidth, source: contentWidth)
         } else if let maxWidth {
@@ -43,6 +45,8 @@ private struct MyFlexFrameLayout: Layout, ViewModifier {
             resultHeight = idealHeight
         } else if minHeight == nil, maxHeight == nil {
             resultHeight = contentHeight
+        } else if let minHeight, let maxHeight {
+            resultHeight = clamp(min: minHeight, max: maxHeight, source: proposal.height ?? contentHeight)
         } else if let minHeight {
             resultHeight = clamp(min: minHeight, max: maxHeight, source: contentHeight)
         } else if let maxHeight {
