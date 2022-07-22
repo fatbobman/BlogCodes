@@ -11,6 +11,7 @@
 		76064161287813310093CF5D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76064160287813310093CF5D /* ContentView.swift */; };
 		76064163287813330093CF5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76064162287813330093CF5D /* Assets.xcassets */; };
 		76064167287813330093CF5D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76064166287813330093CF5D /* Preview Assets.xcassets */; };
+		767E16E9287856340089A95C /* MockContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E16E8287856330089A95C /* MockContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		76064162287813330093CF5D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		76064164287813330093CF5D /* Layout_In_SwiftUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Layout_In_SwiftUI.entitlements; sourceTree = "<group>"; };
 		76064166287813330093CF5D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		767E16E8287856330089A95C /* MockContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 			children = (
 				7606415E287813310093CF5D /* Layout_In_SwiftUIApp.swift */,
 				76064160287813310093CF5D /* ContentView.swift */,
+				767E16E8287856330089A95C /* MockContainer.swift */,
 				76064162287813330093CF5D /* Assets.xcassets */,
 				76064164287813330093CF5D /* Layout_In_SwiftUI.entitlements */,
 				76064165287813330093CF5D /* Preview Content */,
@@ -141,6 +144,7 @@
 			files = (
 				76064161287813310093CF5D /* ContentView.swift in Sources */,
 				7606415F287813310093CF5D /* Layout_In_SwiftUIApp.swift in Sources */,
+				767E16E9287856340089A95C /* MockContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

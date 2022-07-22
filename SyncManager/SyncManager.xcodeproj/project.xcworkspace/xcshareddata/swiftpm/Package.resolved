@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "persistenthistorytrackingkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/fatbobman/PersistentHistoryTrackingKit.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "b89c5efbb9c500bfbb44786724ddfc4f75a0a2aa"
+      }
+    }
+  ],
+  "version" : 2
+}
