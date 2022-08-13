@@ -53,7 +53,7 @@ struct TitleWithDynamicImage: View {
 
     @Sendable
     func createImage() async {
-        let tagView = TagView(tag: tag, textStyle: textStyle, fontSize: fontSize - 7, horizontalPadding: 7, verticalPadding: 2)
+        let tagView = TagView(tag: tag, textStyle: textStyle, fontSize: fontSize - 6, horizontalPadding: 5.5, verticalPadding: 2)
         tagView.generateSnapshot(snapshot: $tagImage)
     }
 }

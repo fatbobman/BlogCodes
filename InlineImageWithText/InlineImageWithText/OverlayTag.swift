@@ -45,7 +45,7 @@ struct TitleWithOverlay: View {
         }
         .font(.custom("", size: pointSize, relativeTo: textStyle))
         .overlay(alignment: .topLeading) {
-            TagView(tag: tag, textStyle: textStyle, fontSize: fontSize - 7, horizontalPadding: 7, verticalPadding: 2)
+            TagView(tag: tag, textStyle: textStyle, fontSize: fontSize - 6, horizontalPadding: 5.5, verticalPadding: 2)
                 .alignmentGuide(.top, computeValue: { $0[.top] - fontSize / 18 })
                 .background(
                     GeometryReader { proxy in
@@ -88,7 +88,7 @@ struct TagView: View {
     }
 
     var cornerRadius: CGFloat {
-        fontSize * (5 / 17)
+        fontSize * (3 / 17)
     }
 
     var body: some View {
