@@ -20,7 +20,7 @@ struct SymbolInTextView: View {
     var body: some View {
         VStack(spacing:50) {
             VStack {
-                Text(message).font(.title) + Text("文字与 Symbol 混排。\(wifi) Text 会将插值图片视作文字的一部分。") + Text(animatableWifi).foregroundColor(.blue)
+                Text(message).font(.title) + Text("文字与 SF Symbols 混排。\(wifi) Text 会将插值图片视作文字的一部分。") + Text(animatableWifi).foregroundColor(.blue)
             }
 
             // 使用 TextBuilder 创建相同的内容
