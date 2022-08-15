@@ -113,7 +113,6 @@ extension UIImage {
     @Sendable
     static func solidImageGenerator(_ color: UIColor, size: CGSize) async -> UIImage {
         let format = UIGraphicsImageRendererFormat()
-        format.scale = 1
         let image = UIGraphicsImageRenderer(size: size, format: format).image { rendererContext in
             color.setFill()
             rendererContext.fill(CGRect(origin: .zero, size: size))

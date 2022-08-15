@@ -103,5 +103,6 @@ extension Font.TextStyle {
 struct Demo1_Preview: PreviewProvider {
     static var previews: some View {
         Demo1()
+            .frame(width: 200)
     }
 }

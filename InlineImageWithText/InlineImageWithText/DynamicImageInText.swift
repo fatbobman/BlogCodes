@@ -64,7 +64,7 @@ extension View {
             let renderer = await ImageRenderer(
                 content: self)
             await MainActor.run {
-                renderer.scale = 3
+                renderer.scale = UIScreen.main.scale
             }
             if let image = await renderer.uiImage {
                 snapshot.wrappedValue = Image(uiImage: image)
@@ -76,5 +76,6 @@ extension View {
 struct Demo3_Preview:PreviewProvider{
     static var previews: some View{
         Demo3()
+            .frame(width:200)
     }
 }
