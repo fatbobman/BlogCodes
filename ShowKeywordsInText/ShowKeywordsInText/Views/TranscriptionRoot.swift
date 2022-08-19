@@ -81,7 +81,7 @@ struct TranscriptionRoot: View {
             searchButton
         }
         .task{
-            await store.loadData(amount: 5000)
+            await store.loadData(amount: 1000)
         }
         .navigationTitle("Search Demo")
     }
