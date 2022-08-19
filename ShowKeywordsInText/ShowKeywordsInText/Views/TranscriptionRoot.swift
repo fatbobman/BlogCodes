@@ -15,26 +15,30 @@ struct TranscriptionRoot: View {
     var body: some View {
         VStack {
             ScrollViewReader { scrollProxy in
-                List(store.transcriptions) { transcription in
-                    TranscriptionRow(
-                        transcription: transcription,
-                        ranges: store.getKeywordsResult(for: transcription.id),
-                        highlightColor: .cyan.opacity(0.45),
-                        currentHighlightColor: .orange.opacity(0.45),
-                        bold: true
-                    )
-                    .id(transcription.id)
-                }
-                .onChange(of: store.currentID) { [lastID = store.currentID] currentID in
-                    if lastID != currentID {
-                        withAnimation {
-                            scrollProxy.scrollTo(currentID, anchor: .center)
+                if store.transcriptions.isEmpty {
+                    ProgressView()
+                } else {
+                    List(store.transcriptions) { transcription in
+                        TranscriptionRow(
+                            transcription: transcription,
+                            ranges: store.getKeywordsResult(for: transcription.id),
+                            highlightColor: .cyan.opacity(0.45),
+                            currentHighlightColor: .orange.opacity(0.45),
+                            bold: true
+                        )
+                        .id(transcription.id)
+                    }
+                    .onChange(of: store.currentID) { [lastID = store.currentID] currentID in
+                        if lastID != currentID {
+                            withAnimation {
+                                scrollProxy.scrollTo(currentID, anchor: .center)
+                            }
                         }
                     }
                 }
-                .task(id: keyword) {
-                    await store.search(keyword: keyword)
-                }
+            }
+            .task(id: keyword) {
+                await store.search(keyword: keyword)
             }
             .safeAreaInset(edge: .bottom) {
                 VStack {
@@ -80,9 +84,9 @@ extension TranscriptionRoot {
             keyword: $keyword,
             currentPosition: store.currentPosition,
             count: store.count,
-            next: { store.next() },
-            previous: { store.previous() },
-            reset: { store.reset() },
+            next: store.gotoNext,
+            previous: store.gotoPrevious ,
+            reset: store.reset,
             search: store.search,
             dismiss: dismissSearchBar
         )

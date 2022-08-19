@@ -7,7 +7,6 @@
 
 import Foundation
 
-@MainActor
 final class Store: ObservableObject {
     @Published var count: Int
     @Published var rangeResult: [UUID: [TranscriptionRanges]]
@@ -36,6 +35,7 @@ final class Store: ObservableObject {
         return positionProxy[currentPosition]
     }
 
+    @MainActor
     func reset() {
         rangeResult.removeAll()
         currentPosition = nil
@@ -43,42 +43,35 @@ final class Store: ObservableObject {
         count = 0
     }
 
-    func getKeywordsResult(for id: UUID) -> KeywordsResult? {
-        guard let rangeResult = rangeResult[id] else { return nil }
+    func getKeywordsResult(for transcriptionID: UUID) -> KeywordsResult? {
+        guard let rangeResult = rangeResult[transcriptionID] else { return nil }
         let position = rangeResult.map(\.position).contains(currentPosition ?? -1) ? currentPosition : nil
         return .init(currentPosition: position, transcriptionRanges: rangeResult)
     }
 
-    func previous() {
+    func gotoPrevious() {
         if let currentPosition, currentPosition > 0 {
             self.currentPosition = currentPosition - 1
         }
     }
 
-    func next() {
+    func gotoNext() {
         if let currentPosition, currentPosition < count - 1 {
             self.currentPosition = currentPosition + 1
         }
     }
 
+    @MainActor
     func setPostion(_ position: Int) {
         if position >= 0, position < count - 1 {
             self.currentPosition = position
         }
     }
 
-    func setSearchResults(results: [UUID: [TranscriptionRanges]], proxy: [Int: UUID]) {
-        rangeResult = results
-        positionProxy = proxy
-        currentPosition = 0
-        count = results.count
-    }
-
     @Sendable
     func search(keyword: String) async {
-        print("start search \(keyword)")
         guard !keyword.isEmpty else {
-            reset()
+            await reset()
             return
         }
         var count = 0
@@ -99,17 +92,21 @@ final class Store: ObservableObject {
         }
 
         if !Task.isCancelled {
-            self.rangeResult = rangeResult
-            self.positionProxy = positionProxy
-            self.count = count
-            self.currentPosition = count == 0 ? nil : 0
+            await setSearchResult(rangeResult: rangeResult, positionProxy: positionProxy, count: count)
         }
-        print("end search \(keyword)")
+    }
+
+    @MainActor
+    private func setSearchResult(rangeResult: [UUID: [TranscriptionRanges]], positionProxy: [Int: UUID], count: Int) {
+        self.rangeResult = rangeResult
+        self.positionProxy = positionProxy
+        self.count = count
+        self.currentPosition = count == 0 ? nil : 0
     }
 
     @Sendable
     func loadData() async {
-        let sampleData = await prepareSampleData(amount: 200)
+        let sampleData = await prepareSampleData(amount: 1000)
         await MainActor.run {
             self.transcriptions = sampleData
         }
@@ -118,9 +115,11 @@ final class Store: ObservableObject {
     @Sendable
     private func prepareSampleData(amount: Int) async -> [Transcription] {
         var result: [Transcription] = []
-        (0..<200).forEach { _ in
+        (0..<amount).forEach { _ in
             let sentence = sampleSentence.randomElement() ?? ""
-            let timestamp = Int.random(in: 1...59).formatted(.number.precision(.integerLength(2))) + ":" + Int.random(in: 1...59).formatted(.number.precision(.integerLength(2)))
+            let min = Int.random(in: 1...59).formatted(.number.precision(.integerLength(2)))
+            let sec = Int.random(in: 1...59).formatted(.number.precision(.integerLength(2)))
+            let timestamp = min + ":" + sec
             result.append(.init(startTime: timestamp, context: sentence))
         }
         return result
