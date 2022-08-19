@@ -5,6 +5,7 @@
 //  Created by Yang Xu on 2022/8/18.
 //
 
+import Combine
 import Foundation
 
 final class Store: ObservableObject {
@@ -13,6 +14,9 @@ final class Store: ObservableObject {
     @Published var currentPosition: Int?
     @Published var positionProxy: [Int: UUID]
     @Published var transcriptions: [Transcription]
+    @Published var keyword: String
+
+    private var cancellable: AnyCancellable?
 
     private var searching = false
 
@@ -21,13 +25,22 @@ final class Store: ObservableObject {
         rangeResult: [UUID: [TranscriptionRanges]] = [:],
         currentPosition: Int? = nil,
         positionProxy: [Int: UUID] = [:],
-        transcriptions: [Transcription] = []
+        transcriptions: [Transcription] = [],
+        keyword: String = ""
     ) {
         self.count = count
         self.rangeResult = rangeResult
         self.currentPosition = currentPosition
         self.positionProxy = positionProxy
         self.transcriptions = transcriptions
+        self.keyword = keyword
+        cancellable = $keyword
+            .removeDuplicates()
+            .throttle(for: .seconds(0.1), scheduler: DispatchQueue.main, latest: true) // 如果数据量很大，可以调整 debounce 缓解性能压力
+            .task(maxPublishers: .max(1)) { keyword in
+                await self.search(keyword: keyword)
+            }
+            .emptySink()
     }
 
     var currentID: UUID? {
@@ -41,6 +54,7 @@ final class Store: ObservableObject {
         currentPosition = nil
         positionProxy.removeAll()
         count = 0
+        keyword = ""
     }
 
     func getKeywordsResult(for transcriptionID: UUID) -> KeywordsResult? {
@@ -105,7 +119,7 @@ final class Store: ObservableObject {
     }
 
     @Sendable
-    func loadData(amount:Int) async {
+    func loadData(amount: Int) async {
         let sampleData = await prepareSampleData(amount: amount)
         await MainActor.run {
             self.transcriptions = sampleData
@@ -124,14 +138,4 @@ final class Store: ObservableObject {
         }
         return result
     }
-}
-
-struct TranscriptionRanges {
-    let position: Int
-    let range: Range<String.Index>
-}
-
-struct KeywordsResult {
-    let currentPosition: Int?
-    let transcriptionRanges: [TranscriptionRanges]
 }

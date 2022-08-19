@@ -14,8 +14,9 @@
 		76111AF528AE089100FD2020 /* Transcription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76111AF428AE089100FD2020 /* Transcription.swift */; };
 		76111AF728AE08BE00FD2020 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76111AF628AE08BE00FD2020 /* Store.swift */; };
 		76111AFB28AE4CED00FD2020 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76111AFA28AE4CED00FD2020 /* SearchBar.swift */; };
-		76111AFD28AE4D2500FD2020 /* Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76111AFC28AE4D2500FD2020 /* Row.swift */; };
+		76111AFD28AE4D2500FD2020 /* TranscriptionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76111AFC28AE4D2500FD2020 /* TranscriptionRow.swift */; };
 		76111AFF28AE4E1800FD2020 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76111AFE28AE4E1800FD2020 /* ContentView.swift */; };
+		769FE8BB28AF705C009A7986 /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769FE8BA28AF705C009A7986 /* Publisher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,8 +28,9 @@
 		76111AF428AE089100FD2020 /* Transcription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transcription.swift; sourceTree = "<group>"; };
 		76111AF628AE08BE00FD2020 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		76111AFA28AE4CED00FD2020 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
-		76111AFC28AE4D2500FD2020 /* Row.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Row.swift; sourceTree = "<group>"; };
+		76111AFC28AE4D2500FD2020 /* TranscriptionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionRow.swift; sourceTree = "<group>"; };
 		76111AFE28AE4E1800FD2020 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		769FE8BA28AF705C009A7986 /* Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publisher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				76111AF628AE08BE00FD2020 /* Store.swift */,
+				769FE8BA28AF705C009A7986 /* Publisher.swift */,
 				76111AF428AE089100FD2020 /* Transcription.swift */,
 			);
 			path = Model;
@@ -92,7 +95,7 @@
 			children = (
 				76111AE828AE085300FD2020 /* TranscriptionRoot.swift */,
 				76111AFA28AE4CED00FD2020 /* SearchBar.swift */,
-				76111AFC28AE4D2500FD2020 /* Row.swift */,
+				76111AFC28AE4D2500FD2020 /* TranscriptionRow.swift */,
 				76111AFE28AE4E1800FD2020 /* ContentView.swift */,
 			);
 			path = Views;
@@ -168,12 +171,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				769FE8BB28AF705C009A7986 /* Publisher.swift in Sources */,
 				76111AE928AE085300FD2020 /* TranscriptionRoot.swift in Sources */,
 				76111AE728AE085300FD2020 /* ShowKeywordsInTextApp.swift in Sources */,
 				76111AFF28AE4E1800FD2020 /* ContentView.swift in Sources */,
 				76111AFB28AE4CED00FD2020 /* SearchBar.swift in Sources */,
 				76111AF728AE08BE00FD2020 /* Store.swift in Sources */,
-				76111AFD28AE4D2500FD2020 /* Row.swift in Sources */,
+				76111AFD28AE4D2500FD2020 /* TranscriptionRow.swift in Sources */,
 				76111AF528AE089100FD2020 /* Transcription.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

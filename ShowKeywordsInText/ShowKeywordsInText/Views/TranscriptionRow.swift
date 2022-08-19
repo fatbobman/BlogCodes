@@ -1,5 +1,5 @@
 //
-//  Row.swift
+//  TranscriptionRow..swift
 //  ShowKeywordsInText
 //
 //  Created by Yang Xu on 2022/8/18.
@@ -10,7 +10,7 @@ import SwiftUI
 
 struct TranscriptionRow: View {
     let transcription: Transcription
-    let ranges: KeywordsResult?
+    @ObservedObject var store:Store
     let highlightColor: Color
     let currentHighlightColor: Color
     let bold: Bool
@@ -18,6 +18,7 @@ struct TranscriptionRow: View {
 
     var body: some View {
         VStack(alignment: .leading) {
+            let ranges = store.getKeywordsResult(for: transcription.id)
             Text(transcription.startTime).font(.caption).padding(.vertical, 2)
             if let ranges {
                 attributedText(ranges)
@@ -51,29 +52,3 @@ struct TranscriptionRow: View {
 }
 
 let positionScheme = "goPosition"
-
-struct TranscriptionRow_Preview:PreviewProvider{
-    static var previews: some View{
-        TranscriptionRow(
-            transcription: .init(startTime: "08:20", context: content ),
-            ranges: transcriptionRanges,
-            highlightColor: .cyan.opacity(0.3),
-            currentHighlightColor: .yellow.opacity(0.7),
-            bold: true,
-            link: true
-        )
-        .padding()
-    }
-
-    static let content = "The following example shows a text field to accept a username, and a text view below it that shadows the continuously updated value of text username. "
-    static var ranges:[Range<String.Index>] {
-        content.ranges(of: "text")
-    }
-
-    static var transcriptionRanges:KeywordsResult{
-        let tr = ranges.enumerated().map{
-            TranscriptionRanges(position: $0.offset, range: $0.element)
-        }
-        return .init(currentPosition: 1, transcriptionRanges: tr)
-    }
-}

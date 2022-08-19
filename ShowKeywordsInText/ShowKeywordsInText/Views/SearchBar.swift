@@ -9,13 +9,7 @@ import Foundation
 import SwiftUI
 
 struct SearchBar: View {
-    @Binding var keyword: String
-    let currentPosition: Int?
-    let count: Int
-    var next: () -> Void
-    var previous: () -> Void
-    var reset: () -> Void
-    var search: (String) async -> Void
+    @ObservedObject var store:Store
     var dismiss: () -> Void
 
     @State private var searching = false
@@ -25,7 +19,7 @@ struct SearchBar: View {
         HStack {
             dismissButton
             HStack {
-                TextField("查找", text: $keyword)
+                TextField("查找", text: $store.keyword)
                     .textInputAutocapitalization(.never)
                     .focused($focused)
                     .padding(.horizontal, 5)
@@ -54,10 +48,9 @@ struct SearchBar: View {
 
     @ViewBuilder
     var cancelButton: some View {
-        if !keyword.isEmpty {
+        if !store.keyword.isEmpty {
             Button {
-                keyword = ""
-                reset()
+                store.reset()
             }
             label: {
                 Image(systemName: "plus.circle.fill") // 􀁍
@@ -70,9 +63,9 @@ struct SearchBar: View {
 
     @ViewBuilder
     var positionText: some View {
-        if let currentPosition, count > 0 {
+        if let currentPosition = store.currentPosition, store.count > 0 {
             VStack {
-                Text(currentPosition + 1, format: .number) + Text("/") + Text(count, format: .number)
+                Text(currentPosition + 1, format: .number) + Text("/") + Text(store.count, format: .number)
             }
             .foregroundColor(.secondary)
         }
@@ -81,31 +74,31 @@ struct SearchBar: View {
     @ViewBuilder
     var nextButton: some View {
         Button {
-            next()
+            store.gotoNext()
         }
     label: {
             Image(systemName: "chevron.down") // 􀆈
-                .foregroundColor((currentPosition ?? 0) >= count - 1 ? .secondary : .primary)
+            .foregroundColor((store.currentPosition ?? 0) >= store.count - 1 ? .secondary : .primary)
         }
-        .disabled((currentPosition ?? 0) >= count - 1)
+    .disabled((store.currentPosition ?? 0) >= store.count - 1)
     }
 
     @ViewBuilder
     var previousButton: some View {
         Button {
-            previous()
+            store.gotoPrevious()
         }
     label: {
             Image(systemName: "chevron.up") // 􀆇
-                .foregroundColor(currentPosition ?? -1 <= 0 ? .secondary : .primary)
+            .foregroundColor(store.currentPosition ?? -1 <= 0 ? .secondary : .primary)
         }
-        .disabled(currentPosition ?? -1 <= 0)
+    .disabled(store.currentPosition ?? -1 <= 0)
     }
 }
 
 struct SearchBarPreview: PreviewProvider {
     static var previews: some View {
-        SearchBar(keyword: .constant("ad"), currentPosition: 0, count: 10, next: {}, previous: {}, reset: {}, search: { _ in }, dismiss: {})
+        SearchBar(store: Store(keyword:"hello world"), dismiss: {})
             .frame(width: 300)
     }
 }

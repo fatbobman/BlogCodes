@@ -11,18 +11,15 @@ import SwiftUI
 struct TranscriptionRoot: View {
     @StateObject private var store = Store()
     @State private var showSearchBar = false
-    @State private var keyword = ""
     let highlightColor: Color
     let currentHighlightColor: Color
 
     init(
         showSearchBar: Bool = false,
-        keyword: String = "",
         highlightColor: Color? = nil,
         currentHighlightColor: Color? = nil
     ) {
         self.showSearchBar = showSearchBar
-        self.keyword = keyword
         self.highlightColor = highlightColor ?? .cyan.opacity(0.3)
         self.currentHighlightColor = currentHighlightColor ?? .yellow.opacity(0.7)
     }
@@ -36,7 +33,7 @@ struct TranscriptionRoot: View {
                     List(store.transcriptions) { transcription in
                         TranscriptionRow(
                             transcription: transcription,
-                            ranges: store.getKeywordsResult(for: transcription.id),
+                            store:store,
                             highlightColor: highlightColor,
                             currentHighlightColor: currentHighlightColor,
                             bold: false,
@@ -64,9 +61,6 @@ struct TranscriptionRoot: View {
                     })
                 }
             }
-            .task(id: keyword) {
-                await store.search(keyword: keyword)
-            }
             .safeAreaInset(edge: .bottom) {
                 VStack {
                     if showSearchBar {
@@ -90,7 +84,6 @@ struct TranscriptionRoot: View {
 extension TranscriptionRoot {
     private func dismissSearchBar() {
         store.reset()
-        keyword = ""
         showSearchBar = false
     }
 
@@ -110,13 +103,7 @@ extension TranscriptionRoot {
     @ViewBuilder
     var safeSearchBar: some View {
         SearchBar(
-            keyword: $keyword,
-            currentPosition: store.currentPosition,
-            count: store.count,
-            next: store.gotoNext,
-            previous: store.gotoPrevious,
-            reset: reset,
-            search: store.search,
+            store:store,
             dismiss: dismissSearchBar
         )
         .frame(height: 40)
@@ -130,14 +117,10 @@ extension TranscriptionRoot {
         .ignoresSafeArea(.all)
         .background(Color(uiColor: .systemGroupedBackground).opacity(0.9))
     }
-
-    private func reset() {
-        store.reset()
-    }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        TranscriptionRoot(showSearchBar: true, keyword: "swiftUI")
+        TranscriptionRoot(showSearchBar: true)
     }
 }
