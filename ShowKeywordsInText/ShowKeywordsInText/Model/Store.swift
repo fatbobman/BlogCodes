@@ -62,7 +62,7 @@ final class Store: ObservableObject {
     }
 
     @MainActor
-    func setPostion(_ position: Int) {
+    func scrollToPosition(_ position: Int) {
         if position >= 0, position < count - 1 {
             self.currentPosition = position
         }
@@ -105,8 +105,8 @@ final class Store: ObservableObject {
     }
 
     @Sendable
-    func loadData() async {
-        let sampleData = await prepareSampleData(amount: 1000)
+    func loadData(amount:Int) async {
+        let sampleData = await prepareSampleData(amount: amount)
         await MainActor.run {
             self.transcriptions = sampleData
         }

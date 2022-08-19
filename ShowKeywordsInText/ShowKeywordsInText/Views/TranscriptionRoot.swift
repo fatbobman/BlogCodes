@@ -12,6 +12,21 @@ struct TranscriptionRoot: View {
     @StateObject private var store = Store()
     @State private var showSearchBar = false
     @State private var keyword = ""
+    let highlightColor: Color
+    let currentHighlightColor: Color
+
+    init(
+        showSearchBar: Bool = false,
+        keyword: String = "",
+        highlightColor: Color? = nil,
+        currentHighlightColor: Color? = nil
+    ) {
+        self.showSearchBar = showSearchBar
+        self.keyword = keyword
+        self.highlightColor = highlightColor ?? .cyan.opacity(0.3)
+        self.currentHighlightColor = currentHighlightColor ?? .yellow.opacity(0.7)
+    }
+
     var body: some View {
         VStack {
             ScrollViewReader { scrollProxy in
@@ -22,9 +37,10 @@ struct TranscriptionRoot: View {
                         TranscriptionRow(
                             transcription: transcription,
                             ranges: store.getKeywordsResult(for: transcription.id),
-                            highlightColor: .cyan.opacity(0.45),
-                            currentHighlightColor: .orange.opacity(0.45),
-                            bold: true
+                            highlightColor: highlightColor,
+                            currentHighlightColor: currentHighlightColor,
+                            bold: false,
+                            link: true
                         )
                         .id(transcription.id)
                     }
@@ -35,6 +51,17 @@ struct TranscriptionRoot: View {
                             }
                         }
                     }
+                    .environment(\.openURL, OpenURLAction { url in
+                        switch url.scheme {
+                        case positionScheme:
+                            if let host = url.host(), let position = Int(host) {
+                                store.scrollToPosition(position)
+                            }
+                            return .handled
+                        default:
+                            return .systemAction
+                        }
+                    })
                 }
             }
             .task(id: keyword) {
@@ -53,13 +80,15 @@ struct TranscriptionRoot: View {
         .toolbar {
             searchButton
         }
-        .task(store.loadData)
+        .task{
+            await store.loadData(amount: 5000)
+        }
         .navigationTitle("Search Demo")
     }
 }
 
 extension TranscriptionRoot {
-    func dismissSearchBar() {
+    private func dismissSearchBar() {
         store.reset()
         keyword = ""
         showSearchBar = false
@@ -72,7 +101,7 @@ extension TranscriptionRoot {
                 showSearchBar = true
             } label: {
                 if !showSearchBar {
-                    Image(systemName: "magnifyingglass")
+                    Image(systemName: "magnifyingglass") // 􀊫
                 }
             }
         }
@@ -85,8 +114,8 @@ extension TranscriptionRoot {
             currentPosition: store.currentPosition,
             count: store.count,
             next: store.gotoNext,
-            previous: store.gotoPrevious ,
-            reset: store.reset,
+            previous: store.gotoPrevious,
+            reset: reset,
             search: store.search,
             dismiss: dismissSearchBar
         )
@@ -101,10 +130,14 @@ extension TranscriptionRoot {
         .ignoresSafeArea(.all)
         .background(Color(uiColor: .systemGroupedBackground).opacity(0.9))
     }
+
+    private func reset() {
+        store.reset()
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        TranscriptionRoot()
+        TranscriptionRoot(showSearchBar: true, keyword: "swiftUI")
     }
 }

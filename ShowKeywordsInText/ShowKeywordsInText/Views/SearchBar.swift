@@ -26,6 +26,7 @@ struct SearchBar: View {
             dismissButton
             HStack {
                 TextField("查找", text: $keyword)
+                    .textInputAutocapitalization(.never)
                     .focused($focused)
                     .padding(.horizontal, 5)
                     .task {
@@ -59,7 +60,7 @@ struct SearchBar: View {
                 reset()
             }
             label: {
-                Image(systemName: "plus.circle.fill")
+                Image(systemName: "plus.circle.fill") // 􀁍
                     .rotationEffect(.degrees(45))
                     .foregroundColor(.secondary)
             }
@@ -83,8 +84,8 @@ struct SearchBar: View {
             next()
         }
     label: {
-            Image(systemName: "chevron.down")
-            .foregroundColor((currentPosition ?? 0) >= count - 1 ? .secondary :.primary)
+            Image(systemName: "chevron.down") // 􀆈
+                .foregroundColor((currentPosition ?? 0) >= count - 1 ? .secondary : .primary)
         }
         .disabled((currentPosition ?? 0) >= count - 1)
     }
@@ -95,8 +96,8 @@ struct SearchBar: View {
             previous()
         }
     label: {
-            Image(systemName: "chevron.up")
-            .foregroundColor(currentPosition ?? -1 <= 0 ? .secondary : .primary)
+            Image(systemName: "chevron.up") // 􀆇
+                .foregroundColor(currentPosition ?? -1 <= 0 ? .secondary : .primary)
         }
         .disabled(currentPosition ?? -1 <= 0)
     }
