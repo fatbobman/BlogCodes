@@ -33,7 +33,7 @@ struct TranscriptionRoot: View {
                     List(store.transcriptions) { transcription in
                         TranscriptionRow(
                             transcription: transcription,
-                            store:store,
+                            store: store,
                             highlightColor: highlightColor,
                             currentHighlightColor: currentHighlightColor,
                             bold: false,
@@ -74,7 +74,7 @@ struct TranscriptionRoot: View {
         .toolbar {
             searchButton
         }
-        .task{
+        .task {
             await store.loadData(amount: 1000)
         }
         .navigationTitle("Search Demo")
@@ -103,7 +103,7 @@ extension TranscriptionRoot {
     @ViewBuilder
     var safeSearchBar: some View {
         SearchBar(
-            store:store,
+            store: store,
             dismiss: dismissSearchBar
         )
         .frame(height: 40)
