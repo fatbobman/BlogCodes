@@ -76,6 +76,7 @@ final class Store: ObservableObject {
 
     @Sendable
     func search(keyword: String) async {
+        print("start search \(keyword)")
         guard !keyword.isEmpty else {
             reset()
             return
@@ -85,30 +86,44 @@ final class Store: ObservableObject {
         var positionProxy: [Int: UUID] = [:]
         var currentPosition: Int = -1
 
-        if let regex = try? Regex("(?i)\(keyword)") {
-            for transcription in transcriptions {
-                let id = transcription.id
-                let matches = transcription.context.matches(of: regex)
-                for match in matches {
-                    count += 1
-                    currentPosition += 1
-                    rangeResult[id, default: []].append(.init(position: currentPosition, range: match.range))
-                    positionProxy[currentPosition] = id
-                }
+        let regex = Regex<AnyRegexOutput>(verbatim: keyword).ignoresCase()
+        for transcription in transcriptions {
+            let id = transcription.id
+            let ranges = transcription.context.ranges(of: regex)
+            for range in ranges {
+                count += 1
+                currentPosition += 1
+                rangeResult[id, default: []].append(.init(position: currentPosition, range: range))
+                positionProxy[currentPosition] = id
             }
         }
 
-        self.rangeResult = rangeResult
-        self.positionProxy = positionProxy
-        self.count = count
-        self.currentPosition = count == 0 ? nil : 0
+        if !Task.isCancelled {
+            self.rangeResult = rangeResult
+            self.positionProxy = positionProxy
+            self.count = count
+            self.currentPosition = count == 0 ? nil : 0
+        }
+        print("end search \(keyword)")
     }
 
     @Sendable
     func loadData() async {
-        await MainActor.run{
-            transcriptions = transcriptionFakeResult
+        let sampleData = await prepareSampleData(amount: 200)
+        await MainActor.run {
+            self.transcriptions = sampleData
         }
+    }
+
+    @Sendable
+    private func prepareSampleData(amount: Int) async -> [Transcription] {
+        var result: [Transcription] = []
+        (0..<200).forEach { _ in
+            let sentence = sampleSentence.randomElement() ?? ""
+            let timestamp = Int.random(in: 1...59).formatted(.number.precision(.integerLength(2))) + ":" + Int.random(in: 1...59).formatted(.number.precision(.integerLength(2)))
+            result.append(.init(startTime: timestamp, context: sentence))
+        }
+        return result
     }
 }
 

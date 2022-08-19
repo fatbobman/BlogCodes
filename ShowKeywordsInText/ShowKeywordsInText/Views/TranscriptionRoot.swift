@@ -16,16 +16,19 @@ struct TranscriptionRoot: View {
         VStack {
             ScrollViewReader { scrollProxy in
                 List(store.transcriptions) { transcription in
-                    TranscriptionRow(transcription: transcription, ranges: store.getKeywordsResult(for: transcription.id))
-                        .id(transcription.id)
-                        .padding(.horizontal, 16)
+                    TranscriptionRow(
+                        transcription: transcription,
+                        ranges: store.getKeywordsResult(for: transcription.id),
+                        highlightColor: .cyan.opacity(0.45),
+                        currentHighlightColor: .orange.opacity(0.45),
+                        bold: true
+                    )
+                    .id(transcription.id)
                 }
-                .scrollContentBackground(.hidden)
-                .listStyle(.plain)
                 .onChange(of: store.currentID) { [lastID = store.currentID] currentID in
                     if lastID != currentID {
                         withAnimation {
-                            scrollProxy.scrollTo(currentID,anchor: .center)
+                            scrollProxy.scrollTo(currentID, anchor: .center)
                         }
                     }
                 }

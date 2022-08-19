@@ -28,6 +28,9 @@ struct SearchBar: View {
                 TextField("查找", text: $keyword)
                     .focused($focused)
                     .padding(.horizontal, 5)
+                    .task {
+                        focused = true
+                    }
                 positionText
                 cancelButton
             }
