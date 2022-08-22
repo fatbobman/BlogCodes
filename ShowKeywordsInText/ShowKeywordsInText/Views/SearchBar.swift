@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct SearchBar: View {
-    @ObservedObject var store:Store
+    @ObservedObject var store: Store
     var dismiss: () -> Void
 
     @State private var searching = false
@@ -36,7 +36,9 @@ struct SearchBar: View {
             nextButton
         }
     }
+}
 
+extension SearchBar {
     @ViewBuilder
     var dismissButton: some View {
         Button("完成") {
@@ -78,9 +80,9 @@ struct SearchBar: View {
         }
     label: {
             Image(systemName: "chevron.down") // 􀆈
-            .foregroundColor((store.currentPosition ?? 0) >= store.count - 1 ? .secondary : .primary)
+                .foregroundColor((store.currentPosition ?? 0) >= store.count - 1 ? .secondary : .primary)
         }
-    .disabled((store.currentPosition ?? 0) >= store.count - 1)
+        .disabled((store.currentPosition ?? 0) >= store.count - 1)
     }
 
     @ViewBuilder
@@ -90,15 +92,15 @@ struct SearchBar: View {
         }
     label: {
             Image(systemName: "chevron.up") // 􀆇
-            .foregroundColor(store.currentPosition ?? -1 <= 0 ? .secondary : .primary)
+                .foregroundColor(store.currentPosition ?? -1 <= 0 ? .secondary : .primary)
         }
-    .disabled(store.currentPosition ?? -1 <= 0)
+        .disabled(store.currentPosition ?? -1 <= 0)
     }
 }
 
 struct SearchBarPreview: PreviewProvider {
     static var previews: some View {
-        SearchBar(store: Store(keyword:"hello world"), dismiss: {})
+        SearchBar(store: Store(keyword: "hello world"), dismiss: {})
             .frame(width: 300)
     }
 }

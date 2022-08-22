@@ -13,14 +13,14 @@ struct Transcription: Equatable, Identifiable {
     var context: String
 }
 
-struct TranscriptionRanges {
+struct TranscriptionRange {
     let position: Int
     let range: Range<String.Index>
 }
 
 struct KeywordsResult {
     let currentPosition: Int?
-    let transcriptionRanges: [TranscriptionRanges]
+    let transcriptionRanges: [TranscriptionRange]
 }
 
 let sampleSentence:[String] = [

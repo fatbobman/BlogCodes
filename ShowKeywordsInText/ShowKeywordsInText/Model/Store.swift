@@ -10,7 +10,7 @@ import Foundation
 
 final class Store: ObservableObject {
     @Published var count: Int
-    @Published var rangeResult: [UUID: [TranscriptionRanges]]
+    @Published var rangeResult: [UUID: [TranscriptionRange]]
     @Published var currentPosition: Int?
     @Published var positionProxy: [Int: UUID]
     @Published var transcriptions: [Transcription]
@@ -22,7 +22,7 @@ final class Store: ObservableObject {
 
     init(
         count: Int = 0,
-        rangeResult: [UUID: [TranscriptionRanges]] = [:],
+        rangeResult: [UUID: [TranscriptionRange]] = [:],
         currentPosition: Int? = nil,
         positionProxy: [Int: UUID] = [:],
         transcriptions: [Transcription] = [],
@@ -89,7 +89,7 @@ final class Store: ObservableObject {
             return
         }
         var count = 0
-        var rangeResult: [UUID: [TranscriptionRanges]] = [:]
+        var rangeResult: [UUID: [TranscriptionRange]] = [:]
         var positionProxy: [Int: UUID] = [:]
         var currentPosition: Int = -1
 
@@ -111,11 +111,33 @@ final class Store: ObservableObject {
     }
 
     @MainActor
-    private func setSearchResult(rangeResult: [UUID: [TranscriptionRanges]], positionProxy: [Int: UUID], count: Int) {
+    private func setSearchResult(rangeResult: [UUID: [TranscriptionRange]], positionProxy: [Int: UUID], count: Int) {
+        let oleResult = self.rangeResult
         self.rangeResult = rangeResult
         self.positionProxy = positionProxy
         self.count = count
-        self.currentPosition = count == 0 ? nil : 0
+        if count == 0 {
+            self.currentPosition = nil
+            return
+        }
+        if let oldCurrentPosition = currentPosition, let newCurrentPosition = getCurrentPositionIfSubRangeStillExist(oldRange: oleResult, newRange: rangeResult, keyword: keyword, oldCurrentPosition: oldCurrentPosition) {
+            self.currentPosition = newCurrentPosition
+        } else {
+            self.currentPosition = 0
+        }
+    }
+
+    /// 以当前选中的关键字为优先
+    private func getCurrentPositionIfSubRangeStillExist(oldRange: [UUID: [TranscriptionRange]], newRange: [UUID: [TranscriptionRange]], keyword: String, oldCurrentPosition: Int) -> Int? {
+        if let oldResult = oldRange.lazy.first(where: { $0.value.contains(where: { $0.position == oldCurrentPosition }) }),
+           let oldRange = oldResult.value.first(where: { $0.position == oldCurrentPosition })?.range,
+           let newResult = newRange.lazy.first(where: { $0.key == oldResult.key && $0.value.contains(where: { oldRange.overlaps($0.range) || $0.range.overlaps(oldRange)})  }),
+           let newPosition = newResult.value.first(where: { oldRange.overlaps($0.range) })?.position
+        {
+            return newPosition
+        } else {
+            return nil
+        }
     }
 
     @Sendable
