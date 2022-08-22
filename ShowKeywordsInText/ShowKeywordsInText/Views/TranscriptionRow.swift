@@ -10,7 +10,7 @@ import SwiftUI
 
 struct TranscriptionRow: View {
     let transcription: Transcription
-    @ObservedObject var store:Store
+    @ObservedObject var store: Store
     let highlightColor: Color
     let currentHighlightColor: Color
     let bold: Bool

@@ -9,19 +9,17 @@ import Combine
 import Foundation
 
 final class Store: ObservableObject {
-    @Published var count: Int
-    @Published var rangeResult: [UUID: [TranscriptionRange]]
-    @Published var currentPosition: Int?
-    @Published var positionProxy: [Int: UUID]
+    @Published var count: Int // 结果数量
+    @Published var rangeResult: [UUID: [TranscriptionRange]] // 搜索结果 transcription.id : 结果区间和序号
+    @Published var currentPosition: Int? // 当前的高亮位置
+    @Published var positionProxy: [Int: UUID] // 结果序号 : transcription.id
     @Published var transcriptions: [Transcription]
     @Published var keyword: String
 
-    var onScreenID: [UUID: Int] = [:]
-    var positionProxyForID: [UUID: [Int]] = [:]
+    var onScreenID: [UUID: Int] = [:] // 当前屏幕中正显示的 transcription ID
+    var positionProxyForID: [UUID: [Int]] = [:] // transcription.id : [结果序号]
 
     private var cancellable: AnyCancellable?
-
-    private var searching = false
 
     init(
         count: Int = 0,
@@ -39,14 +37,14 @@ final class Store: ObservableObject {
         self.keyword = keyword
         cancellable = $keyword
             .removeDuplicates()
-            .throttle(for: .seconds(0.1), scheduler: DispatchQueue.main, latest: true) // 如果数据量很大，可以调整 debounce 缓解性能压力
+            .throttle(for: .seconds(0.1), scheduler: DispatchQueue.main, latest: true) // 使用 debounce 可能会漏掉 keyword 的最终变化
             .task(maxPublishers: .max(1)) { keyword in
                 await self.search(keyword: keyword)
             }
             .emptySink()
     }
 
-    var currentID: UUID? {
+    var currentID: UUID? { // 当前高亮所在的 transcription ID ，用于 scrollTo
         guard let currentPosition else { return nil }
         return positionProxy[currentPosition]
     }
@@ -150,14 +148,9 @@ final class Store: ObservableObject {
 
     /// 从List 当前显示中的 transcription 中就近选择 match 的 position
     private func getCurrentPositionIfInOnScreen() -> Int? {
-        guard let midPosition = Array(onScreenID.values).mid() else {
-            return nil
-        }
+        guard let midPosition = Array(onScreenID.values).mid() else { return nil }
         let idList = onScreenID.sorted(by: { (Double($0.value) - midPosition) < (Double($1.value) - midPosition) })
-        guard let id = idList.first(where: { positionProxyForID[$0.key] != nil })?.key, let position = positionProxyForID[id] else {
-            print("在屏 id 没有在 positionProxy 中的")
-            return nil
-        }
+        guard let id = idList.first(where: { positionProxyForID[$0.key] != nil })?.key, let position = positionProxyForID[id] else { return nil }
         guard let index = transcriptions.firstIndex(where: { $0.id == id }) else { return nil }
         if Double(index) >= midPosition {
             return position.first
