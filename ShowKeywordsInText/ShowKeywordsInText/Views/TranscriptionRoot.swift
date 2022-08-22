@@ -30,7 +30,8 @@ struct TranscriptionRoot: View {
                 if store.transcriptions.isEmpty {
                     ProgressView()
                 } else {
-                    List(store.transcriptions) { transcription in
+                    List(0..<store.transcriptions.count,id:\.self) { index in
+                        let transcription = store.transcriptions[index]
                         TranscriptionRow(
                             transcription: transcription,
                             store: store,
@@ -39,6 +40,8 @@ struct TranscriptionRoot: View {
                             bold: false,
                             link: true
                         )
+                        .onAppear{store.onScreenID[transcription.id] = index}
+                        .onDisappear{store.onScreenID.removeValue(forKey: transcription.id)}
                         .id(transcription.id)
                     }
                     .onChange(of: store.currentID) { [lastID = store.currentID] currentID in

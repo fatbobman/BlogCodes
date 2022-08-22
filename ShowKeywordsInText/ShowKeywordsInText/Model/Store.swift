@@ -16,6 +16,9 @@ final class Store: ObservableObject {
     @Published var transcriptions: [Transcription]
     @Published var keyword: String
 
+    var onScreenID: [UUID: Int] = [:]
+    var positionProxyForID: [UUID: [Int]] = [:]
+
     private var cancellable: AnyCancellable?
 
     private var searching = false
@@ -53,6 +56,7 @@ final class Store: ObservableObject {
         rangeResult.removeAll()
         currentPosition = nil
         positionProxy.removeAll()
+        positionProxyForID.removeAll()
         count = 0
         keyword = ""
     }
@@ -92,6 +96,7 @@ final class Store: ObservableObject {
         var rangeResult: [UUID: [TranscriptionRange]] = [:]
         var positionProxy: [Int: UUID] = [:]
         var currentPosition: Int = -1
+        var positionProxyForID: [UUID: [Int]] = [:]
 
         let regex = Regex<AnyRegexOutput>(verbatim: keyword).ignoresCase()
         for transcription in transcriptions {
@@ -102,25 +107,27 @@ final class Store: ObservableObject {
                 currentPosition += 1
                 rangeResult[id, default: []].append(.init(position: currentPosition, range: range))
                 positionProxy[currentPosition] = id
+                positionProxyForID[id, default: []].append(currentPosition)
             }
         }
 
         if !Task.isCancelled {
-            await setSearchResult(rangeResult: rangeResult, positionProxy: positionProxy, count: count)
+            await setSearchResult(rangeResult: rangeResult, positionProxy: positionProxy, positionProxyForID: positionProxyForID, count: count)
         }
     }
 
     @MainActor
-    private func setSearchResult(rangeResult: [UUID: [TranscriptionRange]], positionProxy: [Int: UUID], count: Int) {
+    private func setSearchResult(rangeResult: [UUID: [TranscriptionRange]], positionProxy: [Int: UUID], positionProxyForID: [UUID: [Int]], count: Int) {
         let oleResult = self.rangeResult
         self.rangeResult = rangeResult
         self.positionProxy = positionProxy
+        self.positionProxyForID = positionProxyForID
         self.count = count
         if count == 0 {
             self.currentPosition = nil
             return
         }
-        if let oldCurrentPosition = currentPosition, let newCurrentPosition = getCurrentPositionIfSubRangeStillExist(oldRange: oleResult, newRange: rangeResult, keyword: keyword, oldCurrentPosition: oldCurrentPosition) {
+        if let newCurrentPosition = getCurrentPositionIfSubRangeStillExist(oldRange: oleResult, newRange: rangeResult, keyword: keyword, oldCurrentPosition: currentPosition) {
             self.currentPosition = newCurrentPosition
         } else {
             self.currentPosition = 0
@@ -128,15 +135,34 @@ final class Store: ObservableObject {
     }
 
     /// 以当前选中的关键字为优先
-    private func getCurrentPositionIfSubRangeStillExist(oldRange: [UUID: [TranscriptionRange]], newRange: [UUID: [TranscriptionRange]], keyword: String, oldCurrentPosition: Int) -> Int? {
+    private func getCurrentPositionIfSubRangeStillExist(oldRange: [UUID: [TranscriptionRange]], newRange: [UUID: [TranscriptionRange]], keyword: String, oldCurrentPosition: Int?) -> Int? {
         if let oldResult = oldRange.lazy.first(where: { $0.value.contains(where: { $0.position == oldCurrentPosition }) }),
            let oldRange = oldResult.value.first(where: { $0.position == oldCurrentPosition })?.range,
-           let newResult = newRange.lazy.first(where: { $0.key == oldResult.key && $0.value.contains(where: { oldRange.overlaps($0.range) || $0.range.overlaps(oldRange)})  }),
+           let newResult = newRange.lazy.first(where: { $0.key == oldResult.key && $0.value.contains(where: { oldRange.overlaps($0.range) || $0.range.overlaps(oldRange) }) }),
            let newPosition = newResult.value.first(where: { oldRange.overlaps($0.range) })?.position
         {
             return newPosition
         } else {
+            let nearPosition = getCurrentPositionIfInOnScreen()
+            return nearPosition ?? nil
+        }
+    }
+
+    /// 从List 当前显示中的 transcription 中就近选择 match 的 position
+    private func getCurrentPositionIfInOnScreen() -> Int? {
+        guard let midPosition = Array(onScreenID.values).mid() else {
             return nil
+        }
+        let idList = onScreenID.sorted(by: { (Double($0.value) - midPosition) < (Double($1.value) - midPosition) })
+        guard let id = idList.first(where: { positionProxyForID[$0.key] != nil })?.key, let position = positionProxyForID[id] else {
+            print("在屏 id 没有在 positionProxy 中的")
+            return nil
+        }
+        guard let index = transcriptions.firstIndex(where: { $0.id == id }) else { return nil }
+        if Double(index) >= midPosition {
+            return position.first
+        } else {
+            return position.last
         }
     }
 
@@ -159,5 +185,12 @@ final class Store: ObservableObject {
             result.append(.init(startTime: timestamp, context: sentence))
         }
         return result
+    }
+}
+
+extension Array where Element == Int {
+    func mid() -> Double? {
+        guard !self.isEmpty else { return nil }
+        return Double(self.reduce(0,+)) / Double(self.count)
     }
 }
