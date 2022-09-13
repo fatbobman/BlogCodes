@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "isscrolling",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/fatbobman/IsScrolling.git",
+      "state" : {
+        "revision" : "b3606435a3f5215a0ee03d1f541f24c1d3db1e7b",
+        "version" : "1.1.0"
+      }
+    },
+    {
+      "identity" : "swiftui-introspect",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/siteline/SwiftUI-Introspect.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "d3cbf32788250741d397cfb5bcd532c37aa1096d"
+      }
+    }
+  ],
+  "version" : 2
+}
