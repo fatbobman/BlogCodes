@@ -69,7 +69,7 @@ struct Demo1: View {
 }
 
 // 如果需要持久的状态（ @State、@StateObject ） 不在 ForEach 的第一层子视图中
-// 在滚动出屏幕（ 稍远一点距离）后再滚动回来，状态会丢失
+// 在滚动出屏幕（ 稍远一点距离 ）后再滚动回来，状态会丢失
 struct Demo2: View {
     var body: some View {
         ScrollView {

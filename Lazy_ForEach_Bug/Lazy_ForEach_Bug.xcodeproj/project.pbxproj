@@ -12,6 +12,7 @@
 		7677296428DAF8CD0044863B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7677296328DAF8CD0044863B /* Assets.xcassets */; };
 		7677296828DAF8CD0044863B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7677296728DAF8CD0044863B /* Preview Assets.xcassets */; };
 		7677296F28DAF8EE0044863B /* Demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7677296E28DAF8EE0044863B /* Demo.swift */; };
+		76E7CA6F28DBD66D005720B6 /* AsyncDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E7CA6E28DBD66D005720B6 /* AsyncDemo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		7677296528DAF8CD0044863B /* Lazy_ForEach_Bug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Lazy_ForEach_Bug.entitlements; sourceTree = "<group>"; };
 		7677296728DAF8CD0044863B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7677296E28DAF8EE0044863B /* Demo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Demo.swift; sourceTree = "<group>"; };
+		76E7CA6E28DBD66D005720B6 /* AsyncDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncDemo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				7677295F28DAF8CC0044863B /* Lazy_ForEach_BugApp.swift */,
 				7677296128DAF8CC0044863B /* ContentView.swift */,
 				7677296E28DAF8EE0044863B /* Demo.swift */,
+				76E7CA6E28DBD66D005720B6 /* AsyncDemo.swift */,
 				7677296328DAF8CD0044863B /* Assets.xcassets */,
 				7677296528DAF8CD0044863B /* Lazy_ForEach_Bug.entitlements */,
 				7677296628DAF8CD0044863B /* Preview Content */,
@@ -143,6 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7677296228DAF8CC0044863B /* ContentView.swift in Sources */,
+				76E7CA6F28DBD66D005720B6 /* AsyncDemo.swift in Sources */,
 				7677296F28DAF8EE0044863B /* Demo.swift in Sources */,
 				7677296028DAF8CC0044863B /* Lazy_ForEach_BugApp.swift in Sources */,
 			);
@@ -201,6 +205,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -253,6 +259,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
