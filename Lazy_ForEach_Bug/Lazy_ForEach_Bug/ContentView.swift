@@ -21,6 +21,8 @@ struct ContentView: View {
                     NavigationLink("AsyncImage_List: in level one", destination: AsyncImageDemoRightVersion_List())
                     NavigationLink("AsyncImage_LazyVStack: Hold Image", destination: AsyncImageDemoRightVersion_LazyVStack())
                 }
+                NavigationLink("Kingfisher Not Hold Image in iOS 16",destination: KingfisherDemo_WrongVersion())
+                NavigationLink("Kingfisher Hold Image in iOS 16",destination: KingfisherDemo_RightVersion())
             }
         }
     }
