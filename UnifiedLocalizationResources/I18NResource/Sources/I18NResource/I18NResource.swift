@@ -17,7 +17,6 @@ public extension Foundation.Bundle {
 
         for candidate in candidates {
             let bundlePath = candidate?.appendingPathComponent(bundleName + ".bundle")
-            print(bundlePath)
             if let bundle = bundlePath.flatMap(Bundle.init(url:)) {
                 return bundle
             }
