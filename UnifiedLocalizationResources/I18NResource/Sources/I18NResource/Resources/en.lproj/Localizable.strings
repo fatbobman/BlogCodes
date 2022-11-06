@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  
+
+  Created by Yang Xu on 2022/11/6.
+  
+*/
+"HELLO_WORLD" = "Hello World!";
+"ViewB" = "View B!";
+"MAIN_APP" = "Main app";

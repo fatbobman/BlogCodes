@@ -11,6 +11,8 @@
 		767FA67F291754430083E41E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767FA67E291754430083E41E /* ContentView.swift */; };
 		767FA681291754450083E41E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 767FA680291754450083E41E /* Assets.xcassets */; };
 		767FA684291754450083E41E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 767FA683291754450083E41E /* Preview Assets.xcassets */; };
+		767FA692291760250083E41E /* PackageA in Frameworks */ = {isa = PBXBuildFile; productRef = 767FA691291760250083E41E /* PackageA */; };
+		767FA694291760250083E41E /* PackageB in Frameworks */ = {isa = PBXBuildFile; productRef = 767FA693291760250083E41E /* PackageB */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,9 @@
 		767FA67E291754430083E41E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		767FA680291754450083E41E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		767FA683291754450083E41E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		767FA68B291755910083E41E /* PackageA */ = {isa = PBXFileReference; lastKnownFileType = text; path = PackageA; sourceTree = SOURCE_ROOT; };
+		767FA68C291755A00083E41E /* PackageB */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = PackageB; sourceTree = "<group>"; };
+		767FA68D291755DF0083E41E /* I18NResource */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = I18NResource; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +31,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				767FA694291760250083E41E /* PackageB in Frameworks */,
+				767FA692291760250083E41E /* PackageA in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -35,8 +42,12 @@
 		767FA670291754430083E41E = {
 			isa = PBXGroup;
 			children = (
+				767FA68D291755DF0083E41E /* I18NResource */,
+				767FA68C291755A00083E41E /* PackageB */,
+				767FA68B291755910083E41E /* PackageA */,
 				767FA67B291754430083E41E /* UnifiedLocalizationResources */,
 				767FA67A291754430083E41E /* Products */,
+				767FA690291760250083E41E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +78,13 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		767FA690291760250083E41E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -83,6 +101,10 @@
 			dependencies = (
 			);
 			name = UnifiedLocalizationResources;
+			packageProductDependencies = (
+				767FA691291760250083E41E /* PackageA */,
+				767FA693291760250083E41E /* PackageB */,
+			);
 			productName = UnifiedLocalizationResources;
 			productReference = 767FA679291754430083E41E /* UnifiedLocalizationResources.app */;
 			productType = "com.apple.product-type.application";
@@ -339,6 +361,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		767FA691291760250083E41E /* PackageA */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PackageA;
+		};
+		767FA693291760250083E41E /* PackageB */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PackageB;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 767FA671291754430083E41E /* Project object */;
 }
