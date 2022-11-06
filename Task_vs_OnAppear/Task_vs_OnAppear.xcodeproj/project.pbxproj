@@ -3,74 +3,73 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		76B4FBF928CF70190014F69B /* ScrollView1App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B4FBF828CF70190014F69B /* ScrollView1App.swift */; };
-		76B4FBFB28CF70190014F69B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B4FBFA28CF70190014F69B /* ContentView.swift */; };
-		76B4FBFD28CF701A0014F69B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76B4FBFC28CF701A0014F69B /* Assets.xcassets */; };
-		76B4FC0028CF701A0014F69B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76B4FBFF28CF701A0014F69B /* Preview Assets.xcassets */; };
-		76B4FC0828CF734F0014F69B /* SolidScroll in Frameworks */ = {isa = PBXBuildFile; productRef = 76B4FC0728CF734F0014F69B /* SolidScroll */; };
-		76B4FC0A28CF735A0014F69B /* PagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B4FC0928CF735A0014F69B /* PagingView.swift */; };
-		76B4FC0C28D021000014F69B /* ScrollWithHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B4FC0B28D021000014F69B /* ScrollWithHeader.swift */; };
+		7639F3E728E1434000252840 /* Task_vs_OnAppearApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7639F3E628E1434000252840 /* Task_vs_OnAppearApp.swift */; };
+		7639F3EB28E1434100252840 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7639F3EA28E1434100252840 /* Assets.xcassets */; };
+		7639F3EE28E1434100252840 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7639F3ED28E1434100252840 /* Preview Assets.xcassets */; };
+		7647429128E2BE4700321963 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7647429028E2BE4700321963 /* Tab.swift */; };
+		7650EA8E28E1DDCB007EF3D9 /* AVPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7650EA8D28E1DDCB007EF3D9 /* AVPlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		76B4FBF528CF70190014F69B /* ScrollView1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrollView1.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		76B4FBF828CF70190014F69B /* ScrollView1App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollView1App.swift; sourceTree = "<group>"; };
-		76B4FBFA28CF70190014F69B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		76B4FBFC28CF701A0014F69B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		76B4FBFF28CF701A0014F69B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		76B4FC0928CF735A0014F69B /* PagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingView.swift; sourceTree = "<group>"; };
-		76B4FC0B28D021000014F69B /* ScrollWithHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollWithHeader.swift; sourceTree = "<group>"; };
+		7639F3E328E1434000252840 /* Task_vs_OnAppear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Task_vs_OnAppear.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7639F3E628E1434000252840 /* Task_vs_OnAppearApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task_vs_OnAppearApp.swift; sourceTree = "<group>"; };
+		7639F3E828E1434000252840 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		7639F3EA28E1434100252840 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7639F3ED28E1434100252840 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		7639F3F428E15B0D00252840 /* ListWithTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListWithTask.swift; sourceTree = "<group>"; };
+		7647429028E2BE4700321963 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
+		7650EA8D28E1DDCB007EF3D9 /* AVPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		76B4FBF228CF70190014F69B /* Frameworks */ = {
+		7639F3E028E1434000252840 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76B4FC0828CF734F0014F69B /* SolidScroll in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		76B4FBEC28CF70190014F69B = {
+		7639F3DA28E1434000252840 = {
 			isa = PBXGroup;
 			children = (
-				76B4FBF728CF70190014F69B /* ScrollView1 */,
-				76B4FBF628CF70190014F69B /* Products */,
+				7639F3E528E1434000252840 /* Task_vs_OnAppear */,
+				7639F3E428E1434000252840 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		76B4FBF628CF70190014F69B /* Products */ = {
+		7639F3E428E1434000252840 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				76B4FBF528CF70190014F69B /* ScrollView1.app */,
+				7639F3E328E1434000252840 /* Task_vs_OnAppear.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		76B4FBF728CF70190014F69B /* ScrollView1 */ = {
+		7639F3E528E1434000252840 /* Task_vs_OnAppear */ = {
 			isa = PBXGroup;
 			children = (
-				76B4FBF828CF70190014F69B /* ScrollView1App.swift */,
-				76B4FBFA28CF70190014F69B /* ContentView.swift */,
-				76B4FC0928CF735A0014F69B /* PagingView.swift */,
-				76B4FC0B28D021000014F69B /* ScrollWithHeader.swift */,
-				76B4FBFC28CF701A0014F69B /* Assets.xcassets */,
-				76B4FBFE28CF701A0014F69B /* Preview Content */,
+				7639F3E628E1434000252840 /* Task_vs_OnAppearApp.swift */,
+				7639F3E828E1434000252840 /* ContentView.swift */,
+				7639F3F428E15B0D00252840 /* ListWithTask.swift */,
+				7650EA8D28E1DDCB007EF3D9 /* AVPlayer.swift */,
+				7647429028E2BE4700321963 /* Tab.swift */,
+				7639F3EA28E1434100252840 /* Assets.xcassets */,
+				7639F3EC28E1434100252840 /* Preview Content */,
 			);
-			path = ScrollView1;
+			path = Task_vs_OnAppear;
 			sourceTree = "<group>";
 		};
-		76B4FBFE28CF701A0014F69B /* Preview Content */ = {
+		7639F3EC28E1434100252840 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				76B4FBFF28CF701A0014F69B /* Preview Assets.xcassets */,
+				7639F3ED28E1434100252840 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -78,90 +77,83 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		76B4FBF428CF70190014F69B /* ScrollView1 */ = {
+		7639F3E228E1434000252840 /* Task_vs_OnAppear */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 76B4FC0328CF701A0014F69B /* Build configuration list for PBXNativeTarget "ScrollView1" */;
+			buildConfigurationList = 7639F3F128E1434100252840 /* Build configuration list for PBXNativeTarget "Task_vs_OnAppear" */;
 			buildPhases = (
-				76B4FBF128CF70190014F69B /* Sources */,
-				76B4FBF228CF70190014F69B /* Frameworks */,
-				76B4FBF328CF70190014F69B /* Resources */,
+				7639F3DF28E1434000252840 /* Sources */,
+				7639F3E028E1434000252840 /* Frameworks */,
+				7639F3E128E1434000252840 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = ScrollView1;
-			packageProductDependencies = (
-				76B4FC0728CF734F0014F69B /* SolidScroll */,
-			);
-			productName = ScrollView1;
-			productReference = 76B4FBF528CF70190014F69B /* ScrollView1.app */;
+			name = Task_vs_OnAppear;
+			productName = Task_vs_OnAppear;
+			productReference = 7639F3E328E1434000252840 /* Task_vs_OnAppear.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		76B4FBED28CF70190014F69B /* Project object */ = {
+		7639F3DB28E1434000252840 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
-					76B4FBF428CF70190014F69B = {
+					7639F3E228E1434000252840 = {
 						CreatedOnToolsVersion = 14.0;
 					};
 				};
 			};
-			buildConfigurationList = 76B4FBF028CF70190014F69B /* Build configuration list for PBXProject "ScrollView1" */;
-			compatibilityVersion = "Xcode 14.0";
+			buildConfigurationList = 7639F3DE28E1434000252840 /* Build configuration list for PBXProject "Task_vs_OnAppear" */;
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 76B4FBEC28CF70190014F69B;
-			packageReferences = (
-				76B4FC0628CF734F0014F69B /* XCRemoteSwiftPackageReference "SolidScroll" */,
-			);
-			productRefGroup = 76B4FBF628CF70190014F69B /* Products */;
+			mainGroup = 7639F3DA28E1434000252840;
+			productRefGroup = 7639F3E428E1434000252840 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				76B4FBF428CF70190014F69B /* ScrollView1 */,
+				7639F3E228E1434000252840 /* Task_vs_OnAppear */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		76B4FBF328CF70190014F69B /* Resources */ = {
+		7639F3E128E1434000252840 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76B4FC0028CF701A0014F69B /* Preview Assets.xcassets in Resources */,
-				76B4FBFD28CF701A0014F69B /* Assets.xcassets in Resources */,
+				7639F3EE28E1434100252840 /* Preview Assets.xcassets in Resources */,
+				7639F3EB28E1434100252840 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		76B4FBF128CF70190014F69B /* Sources */ = {
+		7639F3DF28E1434000252840 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76B4FC0A28CF735A0014F69B /* PagingView.swift in Sources */,
-				76B4FC0C28D021000014F69B /* ScrollWithHeader.swift in Sources */,
-				76B4FBFB28CF70190014F69B /* ContentView.swift in Sources */,
-				76B4FBF928CF70190014F69B /* ScrollView1App.swift in Sources */,
+				7650EA8E28E1DDCB007EF3D9 /* AVPlayer.swift in Sources */,
+				7647429128E2BE4700321963 /* Tab.swift in Sources */,
+				7639F3E728E1434000252840 /* Task_vs_OnAppearApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		76B4FC0128CF701A0014F69B /* Debug */ = {
+		7639F3EF28E1434100252840 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -221,7 +213,7 @@
 			};
 			name = Debug;
 		};
-		76B4FC0228CF701A0014F69B /* Release */ = {
+		7639F3F028E1434100252840 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -275,14 +267,14 @@
 			};
 			name = Release;
 		};
-		76B4FC0428CF701A0014F69B /* Debug */ = {
+		7639F3F228E1434100252840 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ScrollView1/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Task_vs_OnAppear/Preview Content\"";
 				DEVELOPMENT_TEAM = VFBLFL665K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -291,12 +283,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.fatbobman.ScrollView1;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fatbobman.Task-vs-OnAppear";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -304,14 +297,14 @@
 			};
 			name = Debug;
 		};
-		76B4FC0528CF701A0014F69B /* Release */ = {
+		7639F3F328E1434100252840 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ScrollView1/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Task_vs_OnAppear/Preview Content\"";
 				DEVELOPMENT_TEAM = VFBLFL665K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -320,12 +313,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.fatbobman.ScrollView1;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fatbobman.Task-vs-OnAppear";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -336,44 +330,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		76B4FBF028CF70190014F69B /* Build configuration list for PBXProject "ScrollView1" */ = {
+		7639F3DE28E1434000252840 /* Build configuration list for PBXProject "Task_vs_OnAppear" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				76B4FC0128CF701A0014F69B /* Debug */,
-				76B4FC0228CF701A0014F69B /* Release */,
+				7639F3EF28E1434100252840 /* Debug */,
+				7639F3F028E1434100252840 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		76B4FC0328CF701A0014F69B /* Build configuration list for PBXNativeTarget "ScrollView1" */ = {
+		7639F3F128E1434100252840 /* Build configuration list for PBXNativeTarget "Task_vs_OnAppear" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				76B4FC0428CF701A0014F69B /* Debug */,
-				76B4FC0528CF701A0014F69B /* Release */,
+				7639F3F228E1434100252840 /* Debug */,
+				7639F3F328E1434100252840 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		76B4FC0628CF734F0014F69B /* XCRemoteSwiftPackageReference "SolidScroll" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/edudnyk/SolidScroll.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		76B4FC0728CF734F0014F69B /* SolidScroll */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 76B4FC0628CF734F0014F69B /* XCRemoteSwiftPackageReference "SolidScroll" */;
-			productName = SolidScroll;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = 76B4FBED28CF70190014F69B /* Project object */;
+	rootObject = 7639F3DB28E1434000252840 /* Project object */;
 }

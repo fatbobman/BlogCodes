@@ -91,3 +91,16 @@ struct GestureProvider2: _ScrollViewGestureProvider {
         .all
     }
 }
+
+extension View {
+    func sizeInfo(_ id: String = "") -> some View {
+        background(
+            GeometryReader { proxy in
+                Color.clear
+                    .task(id: proxy.size) {
+                        print(id, proxy.size)
+                    }
+            }
+        )
+    }
+}

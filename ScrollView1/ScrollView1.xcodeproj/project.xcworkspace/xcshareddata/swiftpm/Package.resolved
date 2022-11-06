@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "solidscroll",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/edudnyk/SolidScroll.git",
+      "state" : {
+        "revision" : "43ae94f03ea7cf9470256d63893629d3d58c036a",
+        "version" : "0.0.1"
+      }
+    }
+  ],
+  "version" : 2
+}
