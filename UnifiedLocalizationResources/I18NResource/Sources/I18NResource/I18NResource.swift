@@ -16,6 +16,7 @@ public extension Foundation.Bundle {
         ]
 
         for candidate in candidates {
+            // 对于非 mac 苹果，可以需要使用 resources 尾缀
             let bundlePath = candidate?.appendingPathComponent(bundleName + ".bundle")
             if let bundle = bundlePath.flatMap(Bundle.init(url:)) {
                 return bundle
