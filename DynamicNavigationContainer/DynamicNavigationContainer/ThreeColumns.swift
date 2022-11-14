@@ -42,6 +42,7 @@ struct ThreeColumnsView: View {
                     Text("Empty")
                 }
             })
+            .navigationSplitViewStyle(.balanced)
             HStack {
                 Button("Back Root") {
                     store.backRoot()
