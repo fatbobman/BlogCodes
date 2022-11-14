@@ -30,6 +30,7 @@ struct ThreeColumnsView: View {
                         }
                     }
                 }
+                .id(store.contentID)
                 .overlay {
                     if store.contentID == nil {
                         Text("Empty")

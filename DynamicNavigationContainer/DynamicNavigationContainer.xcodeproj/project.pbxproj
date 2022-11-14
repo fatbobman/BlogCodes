@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		76CBC39D29220A3D0045DEBA /* showTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CBC39C29220A3D0045DEBA /* showTimes.swift */; };
 		76EA6C32291F2C4000035E55 /* DynamicNavigationContainerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EA6C31291F2C4000035E55 /* DynamicNavigationContainerApp.swift */; };
 		76EA6C34291F2C4000035E55 /* ThreeColumns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EA6C33291F2C4000035E55 /* ThreeColumns.swift */; };
 		76EA6C36291F2C4100035E55 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76EA6C35291F2C4100035E55 /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		76CBC39C29220A3D0045DEBA /* showTimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = showTimes.swift; sourceTree = "<group>"; };
 		76EA6C2E291F2C4000035E55 /* DynamicNavigationContainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DynamicNavigationContainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76EA6C31291F2C4000035E55 /* DynamicNavigationContainerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicNavigationContainerApp.swift; sourceTree = "<group>"; };
 		76EA6C33291F2C4000035E55 /* ThreeColumns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeColumns.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 				76EA6C45291F810F00035E55 /* ContentView.swift */,
 				76EA6C35291F2C4100035E55 /* Assets.xcassets */,
 				76EA6C37291F2C4100035E55 /* Preview Content */,
+				76CBC39C29220A3D0045DEBA /* showTimes.swift */,
 			);
 			path = DynamicNavigationContainer;
 			sourceTree = "<group>";
@@ -149,6 +152,7 @@
 				76EA6C34291F2C4000035E55 /* ThreeColumns.swift in Sources */,
 				76EA6C46291F810F00035E55 /* ContentView.swift in Sources */,
 				76EA6C44291F66B900035E55 /* AdaptiveDemo.swift in Sources */,
+				76CBC39D29220A3D0045DEBA /* showTimes.swift in Sources */,
 				76EA6C32291F2C4000035E55 /* DynamicNavigationContainerApp.swift in Sources */,
 				76EA6C40291F3FED00035E55 /* TwoColumns.swift in Sources */,
 			);
