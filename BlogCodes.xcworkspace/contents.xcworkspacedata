@@ -1,4 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <FileRef
+      location = "group:Layout_In_SwiftUI/Layout_In_SwiftUI.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ScrollStatus/ScrollStatus.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:SyncManager/SyncManager.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:FetchRequestDemo/FetchRequestDemo.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Lazy_ForEach_Bug/Lazy_ForEach_Bug.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Layout_MyVStack/Layout_MyVStack.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:CenteringAndDividing/CenteringAndDividing.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:InlineImageWithText/InlineImageWithText.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ShowKeywordsInText/ShowKeywordsInText.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ViewBuilder/MyViewBuilder.playground">
+   </FileRef>
+   <FileRef
+      location = "group:Centering/Centering.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:StateObject_vs_ObservedObject.playground">
+   </FileRef>
+   <FileRef
+      location = "group:Published/Published.playground">
+   </FileRef>
+   <FileRef
+      location = "group:ZIndexDemo/ZIndexDemo.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Animation/AnimationDemo.playground">
+   </FileRef>
+   <FileRef
+      location = "group:My_Frame/My_Frame.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:MyZStack/MyZStack.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:AttributedStringBuilder/AttributedStringBuilderDemo.playground">
+   </FileRef>
+   <FileRef
+      location = "group:Task_vs_OnAppear/Task_vs_OnAppear.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:UnifiedLocalizationResources/UnifiedLocalizationResources.xcodeproj">
+   </FileRef>
 </Workspace>
