@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:DynamicNavigationContainer/DynamicNavigationContainer.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Layout_In_SwiftUI/Layout_In_SwiftUI.xcodeproj">
    </FileRef>
    <FileRef
