@@ -19,19 +19,14 @@ struct AnalyticsView: View {
             Button("Set n = 2") {
                 n = 2
                 show = true
-                dump(_n)
-                // 即使 Text 被注释掉， dump 信息中的 _wasRead 依然为 true，这是因为 n 已经与
-                // sheet 中的视图想关联
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1){
+                    dump(_n)
+                }
             }
             .buttonStyle(.bordered)
         }
         .sheet(isPresented: $show) {
             SheetInitMonitorView(show: $show, n: n)
-        }
-        .onAppear {
-            dump(_n)
-            // 当 Text 被注释掉时， dump 信息中的 _wasRead 为 false
-            // 表示 n 尚未与当前视图进行关联
         }
     }
 }

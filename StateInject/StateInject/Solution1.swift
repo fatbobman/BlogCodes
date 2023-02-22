@@ -19,7 +19,8 @@ struct Solution1: View {
                 show = true
             }
             .buttonStyle(.bordered)
-            .id(n)
+//            .id(n)
+            .onChange(of:n){_ in }
         }
         .sheet(isPresented: $show) {
             VStack {
@@ -39,4 +40,5 @@ struct Solution1Preview:PreviewProvider {
         Solution1()
     }
 }
+
 
