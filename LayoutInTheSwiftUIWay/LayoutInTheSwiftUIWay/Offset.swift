@@ -14,7 +14,7 @@ struct OffsetDemo: View {
     var body: some View {
         Color.clear
             .overlay(alignment: .bottom) {
-                VStack(spacing:0) {
+                VStack(spacing: 0) {
                     RedView()
                     GreenView()
                         .sizeInfo($greenSize)
@@ -27,7 +27,7 @@ struct OffsetDemo: View {
     }
 }
 
-struct OffsetDemoPreview:PreviewProvider {
+struct OffsetDemoPreview: PreviewProvider {
     static var previews: some View {
         OffsetDemo()
     }
