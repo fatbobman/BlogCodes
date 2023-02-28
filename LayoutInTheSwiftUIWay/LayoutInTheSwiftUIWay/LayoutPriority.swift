@@ -21,7 +21,6 @@ struct LayoutPriorityDemo: View {
                         .layoutPriority(show ? 0 : 2)
                     RedView()
                         .sizeInfo($redViewSize)
-                        .layoutPriority(show ? 1 : 2)
                     GreenView().layoutPriority(show ? 2 : 0)
                 }
                 .animation(.default, value: show)
