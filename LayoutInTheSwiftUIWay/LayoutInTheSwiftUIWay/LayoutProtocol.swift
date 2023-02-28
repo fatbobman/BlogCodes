@@ -67,7 +67,7 @@ struct AlignmentBottomLayout: Layout {
         var currentY: CGFloat = bounds.height - cache.alignmentHeight + bounds.minY
         for i in subviews.indices {
             let subview = subviews[i]
-            subview.place(at: .init(x: 0, y: currentY), anchor: .topLeading, proposal: proposal)
+            subview.place(at: .init(x: bounds.minX, y: currentY), anchor: .topLeading, proposal: proposal)
             currentY += cache.sizes[i].height
         }
     }
