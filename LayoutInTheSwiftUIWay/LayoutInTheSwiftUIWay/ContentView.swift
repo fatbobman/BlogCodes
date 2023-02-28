@@ -14,6 +14,8 @@ struct ContentView: View {
                 NavigationLink("Offset", destination: { OffsetDemo() })
                 NavigationLink("Alignment", destination: { AlignmentDemo() })
                 NavigationLink("NameSpace", destination: { NameSpaceDemo() })
+                NavigationLink("ScrollView", destination: { ScrollViewDemo() })
+                NavigationLink("LayoutPriority", destination: { LayoutPriorityDemo() })
                 NavigationLink("Alignment without GeometryReader", destination: { AlignmentWithoutGeometryReader() })
                 NavigationLink("Transition", destination: { TransitionDemo() })
             }
