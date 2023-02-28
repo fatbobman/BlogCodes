@@ -12,7 +12,6 @@ struct NameSpaceDemo: View {
     @State var show = false
     @Namespace var placeHolder
     @State var greenSize: CGSize = .zero
-    @State var redSize: CGSize = .zero
     var body: some View {
         Color.clear
             // green placeholder
