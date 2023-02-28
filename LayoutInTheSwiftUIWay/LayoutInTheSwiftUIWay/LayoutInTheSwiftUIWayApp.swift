@@ -11,7 +11,8 @@ import SwiftUI
 struct LayoutInTheSwiftUIWayApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+//            ContentView()
+            LayoutProtocolExample()
         }
     }
 }

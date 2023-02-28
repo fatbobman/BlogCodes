@@ -64,7 +64,7 @@ struct AlignmentBottomLayout: Layout {
 
     func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout Catch) {
         guard !subviews.isEmpty else { return }
-        var currentY: CGFloat = bounds.height - cache.alignmentHeight
+        var currentY: CGFloat = bounds.height - cache.alignmentHeight + bounds.minY
         for i in subviews.indices {
             let subview = subviews[i]
             subview.place(at: .init(x: 0, y: currentY), anchor: .topLeading, proposal: proposal)
