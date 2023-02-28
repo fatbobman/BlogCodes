@@ -18,6 +18,7 @@ struct ContentView: View {
                 NavigationLink("LayoutPriority", destination: { LayoutPriorityDemo() })
                 NavigationLink("Alignment without GeometryReader", destination: { AlignmentWithoutGeometryReader() })
                 NavigationLink("Transition", destination: { TransitionDemo() })
+                NavigationLink("LayoutProtocol", destination: { LayoutProtocolDemo() })
             }
             .navigationTitle("Layout Demo")
         }
