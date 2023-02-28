@@ -27,6 +27,7 @@ struct ScrollViewDemo: View {
                                 .id("green")
                         }
                     }
+                    .scrollDisabled(true)
                     .onAppear {
                         proxy.scrollTo("red", anchor: .bottom)
                     }
