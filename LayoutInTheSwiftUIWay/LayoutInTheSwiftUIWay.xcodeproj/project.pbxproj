@@ -86,9 +86,9 @@
 				7641C87929AD7F2A0011EFB5 /* ScrollView.swift */,
 				7641C87F29AD8A3E0011EFB5 /* LayoutPriority.swift */,
 				76F73A5029A883CB0072510F /* AlignmentWithoutGeometryReader.swift */,
+				76F73A4629A85BE50072510F /* Transition.swift */,
 				7641C88729AD98FF0011EFB5 /* LayoutProtocol.swift */,
 				7641C88929ADA1690011EFB5 /* LayoutProtocolExample.swift */,
-				76F73A4629A85BE50072510F /* Transition.swift */,
 				763C5E9129A856500054C86F /* Assets.xcassets */,
 				763C5E9329A856500054C86F /* Preview Content */,
 			);
