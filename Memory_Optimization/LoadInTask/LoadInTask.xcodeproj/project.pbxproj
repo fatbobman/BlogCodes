@@ -13,6 +13,7 @@
 		76F34BFE29B5EC7100C6140B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76F34BFD29B5EC7100C6140B /* Preview Assets.xcassets */; };
 		76F34C0029B5EC7100C6140B /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F34BFF29B5EC7100C6140B /* Persistence.swift */; };
 		76F34C0329B5EC7100C6140B /* LoadInTask.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 76F34C0129B5EC7100C6140B /* LoadInTask.xcdatamodeld */; };
+		76F34C0A29B5EDC000C6140B /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F34C0929B5EDC000C6140B /* ItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		76F34BFD29B5EC7100C6140B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		76F34BFF29B5EC7100C6140B /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		76F34C0229B5EC7100C6140B /* LoadInTask.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LoadInTask.xcdatamodel; sourceTree = "<group>"; };
+		76F34C0929B5EDC000C6140B /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			children = (
 				76F34BF629B5EC7000C6140B /* LoadInTaskApp.swift */,
 				76F34BF829B5EC7000C6140B /* ContentView.swift */,
+				76F34C0929B5EDC000C6140B /* ItemCell.swift */,
 				76F34BFA29B5EC7100C6140B /* Assets.xcassets */,
 				76F34BFF29B5EC7100C6140B /* Persistence.swift */,
 				76F34C0129B5EC7100C6140B /* LoadInTask.xcdatamodeld */,
@@ -147,6 +150,7 @@
 				76F34C0329B5EC7100C6140B /* LoadInTask.xcdatamodeld in Sources */,
 				76F34BF929B5EC7000C6140B /* ContentView.swift in Sources */,
 				76F34BF729B5EC7000C6140B /* LoadInTaskApp.swift in Sources */,
+				76F34C0A29B5EDC000C6140B /* ItemCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

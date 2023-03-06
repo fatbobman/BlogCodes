@@ -20,11 +20,7 @@ struct ContentView: View {
         NavigationView {
             List {
                 ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
-                    }
+                    ItemCell(item: item)
                 }
                 .onDelete(perform: deleteItems)
             }
@@ -46,7 +42,9 @@ struct ContentView: View {
         withAnimation {
             let newItem = Item(context: viewContext)
             newItem.timestamp = Date()
-
+            let picture = Picture(context: viewContext)
+            picture.data = UIImage(named: "baby")!.pngData()
+            newItem.picture = picture
             do {
                 try viewContext.save()
             } catch {
