@@ -5,8 +5,8 @@
 //  Created by Yang Xu on 2023/3/7.
 //
 
-import SwiftUI
 import CoreData
+import SwiftUI
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -16,73 +16,76 @@ struct ContentView: View {
         animation: .default)
     private var items: FetchedResults<Item>
 
+    @State var memory: Float = 0
+
     var body: some View {
         NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+            VStack {
+                HStack {
+                    Text("记录数: \(items.count)")
+                    Text("内存占用: ") + Text(memory, format: .number.precision(.fractionLength(1)))
+                        .foregroundColor(.red)
+                        .bold()
+                }
+                List {
+                    ForEach(items) { item in
+                        ItemCell(item: item)
                     }
                 }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                .toolbar {
+                    ToolbarItem {
+                        Button(action: addItem) {
+                            Text("Add 100")
+                        }
                     }
                 }
             }
-            Text("Select an item")
+        }
+        .task {
+            for await _ in Timer.publish(every: 0.3, on: .main, in: .common).autoconnect().values {
+                memory = reportMemory()
+            }
         }
     }
 
     private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        Task {
+            let context = PersistenceController.shared.container.newBackgroundContext()
+            await context.perform {
+                for i in 0 ..< 100 {
+                    let newItem = Item(context: context)
+                    newItem.timestamp = Date()
+                    let picture = Picture(context: context)
+                    picture.data = UIImage(named: "baby")!.pngData()
+                    newItem.picture = picture
+                    print("generate item \(i)")
+                }
+                do {
+                    try context.save()
+                    print("100 items saved")
+                } catch {
+                    let nsError = error as NSError
+                    fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                }
             }
         }
     }
 }
 
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
+}
+
+func reportMemory() -> Float {
+    var taskInfo = task_vm_info_data_t()
+    var count = mach_msg_type_number_t(MemoryLayout<task_vm_info>.size) / 4
+    let _: kern_return_t = withUnsafeMutablePointer(to: &taskInfo) {
+        $0.withMemoryRebound(to: integer_t.self, capacity: 1) {
+            task_info(mach_task_self_, task_flavor_t(TASK_VM_INFO), $0, &count)
+        }
+    }
+    let usedMb = Float(taskInfo.phys_footprint) / 1048576.0
+    return usedMb
 }

@@ -13,6 +13,7 @@
 		76A08E3D29B6AD75007337D3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76A08E3C29B6AD75007337D3 /* Preview Assets.xcassets */; };
 		76A08E3F29B6AD75007337D3 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A08E3E29B6AD75007337D3 /* Persistence.swift */; };
 		76A08E4229B6AD75007337D3 /* LoadByRelationship.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 76A08E4029B6AD75007337D3 /* LoadByRelationship.xcdatamodeld */; };
+		76A08E4929B6ADAA007337D3 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A08E4829B6ADAA007337D3 /* ItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		76A08E3C29B6AD75007337D3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		76A08E3E29B6AD75007337D3 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		76A08E4129B6AD75007337D3 /* LoadByRelationship.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LoadByRelationship.xcdatamodel; sourceTree = "<group>"; };
+		76A08E4829B6ADAA007337D3 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			children = (
 				76A08E3529B6AD75007337D3 /* LoadByRelationshipApp.swift */,
 				76A08E3729B6AD75007337D3 /* ContentView.swift */,
+				76A08E4829B6ADAA007337D3 /* ItemCell.swift */,
 				76A08E3929B6AD75007337D3 /* Assets.xcassets */,
 				76A08E3E29B6AD75007337D3 /* Persistence.swift */,
 				76A08E4029B6AD75007337D3 /* LoadByRelationship.xcdatamodeld */,
@@ -147,6 +150,7 @@
 				76A08E3F29B6AD75007337D3 /* Persistence.swift in Sources */,
 				76A08E3829B6AD75007337D3 /* ContentView.swift in Sources */,
 				76A08E3629B6AD75007337D3 /* LoadByRelationshipApp.swift in Sources */,
+				76A08E4929B6ADAA007337D3 /* ItemCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
