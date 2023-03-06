@@ -27,11 +27,13 @@ struct ItemCell: View {
             }
         }
         .frame(minWidth: .zero, maxWidth: .infinity)
+        // 580MB
         .onAppear {
             if let data = item.picture?.data, let uiImage = UIImage(data: data) {
                 self.imageHolder.image = Image(uiImage: uiImage)
             }
         }
+        // 233MB
 //        .onAppear{
 //            Task{
 //                if let objectID = item.picture?.objectID {
