@@ -31,8 +31,12 @@ struct ItemCell: View {
         }
         .onDisappear {
             show = false
-            if let picture = item.picture {
-                viewContext.refresh(picture, mergeChanges: false)
+            // 当将 Binary 保存在外部时,效果不大
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                viewContext.refresh(item, mergeChanges: false)
+                if let picture = item.picture {
+                    viewContext.refresh(picture, mergeChanges: false)
+                }
             }
         }
     }

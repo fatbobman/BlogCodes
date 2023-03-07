@@ -5,7 +5,7 @@
         <relationship name="picture" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Picture" inverseName="item" inverseEntity="Picture"/>
     </entity>
     <entity name="Picture" representedClassName="Picture" syncable="YES" codeGenerationType="class">
-        <attribute name="data" optional="YES" attributeType="Binary"/>
+        <attribute name="data" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="picture" inverseEntity="Item"/>
     </entity>
 </model>
