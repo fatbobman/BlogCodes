@@ -30,14 +30,14 @@ struct ItemCell: View {
             }
         }
         .frame(minWidth: .zero, maxWidth: .infinity)
-        .onAppear{
+        .onAppear {
             show = true
-            Task{
+            Task {
                 if let objectID = item.picture?.objectID {
-                    let imageData:Data? =  await PersistenceController.shared.container.performBackgroundTask{ context in
-                        if let picture = try? context.existingObject(with: objectID) as? Picture,let data = picture.data {
+                    let imageData: Data? = await PersistenceController.shared.container.performBackgroundTask { context in
+                        if let picture = try? context.existingObject(with: objectID) as? Picture, let data = picture.data {
                             return data
-                        } else { return nil}
+                        } else { return nil }
                     }
                     if let imageData {
                         imageHolder.image = Image(uiImage: UIImage(data: imageData)!)
