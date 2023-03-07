@@ -13,28 +13,25 @@ struct ItemCell: View {
     @StateObject var imageHolder = ImageHolder()
     @Environment(\.managedObjectContext) var viewContext
     let imageSize: CGSize = .init(width: 120, height: 160)
+    @State var show = true
     var body: some View {
         HStack {
-            Text(self.item.timestamp?.timeIntervalSince1970 ?? 0, format: .number)
-            if let image = imageHolder.image {
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: self.imageSize.width, height: self.imageSize.height)
-            } else {
-                Rectangle()
-                    .frame(width: self.imageSize.width, height: self.imageSize.height)
+            if show {
+                Text(self.item.timestamp?.timeIntervalSince1970 ?? 0, format: .number)
+                if let image = imageHolder.image {
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: self.imageSize.width, height: self.imageSize.height)
+                } else {
+                    Rectangle()
+                        .frame(width: self.imageSize.width, height: self.imageSize.height)
+                }
             }
         }
         .frame(minWidth: .zero, maxWidth: .infinity)
-        // 580MB
-//        .onAppear {
-//            if let data = item.picture?.data, let uiImage = UIImage(data: data) {
-//                self.imageHolder.image = Image(uiImage: uiImage)
-//            }
-//        }
-        // 233MB
         .onAppear{
+            show = true
             Task{
                 if let objectID = item.picture?.objectID {
                     let imageData:Data? =  await PersistenceController.shared.container.performBackgroundTask{ context in
@@ -49,6 +46,7 @@ struct ItemCell: View {
             }
         }
         .onDisappear {
+            show = false
             self.imageHolder.image = nil
         }
     }
