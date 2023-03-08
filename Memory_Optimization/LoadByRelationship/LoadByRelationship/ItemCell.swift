@@ -16,8 +16,7 @@ struct ItemCell: View {
     var body: some View {
         HStack {
             Text(self.item.timestamp?.timeIntervalSince1970 ?? 0, format: .number)
-            Rectangle()
-                .fill(.gray)
+            Color.clear
                 .frame(width: self.imageSize.width, height: self.imageSize.height)
                 .overlay(
                     Group {
