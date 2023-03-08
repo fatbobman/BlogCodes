@@ -16,18 +16,20 @@ struct ItemCell: View {
     @State var show = true
     var body: some View {
         HStack {
-            if show {
-                Text(self.item.timestamp?.timeIntervalSince1970 ?? 0, format: .number)
-                if let image = imageHolder.image {
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: self.imageSize.width, height: self.imageSize.height)
-                } else {
-                    Rectangle()
-                        .frame(width: self.imageSize.width, height: self.imageSize.height)
-                }
-            }
+            Text(self.item.timestamp?.timeIntervalSince1970 ?? 0, format: .number)
+            Rectangle()
+                .fill(.gray)
+                .frame(width: self.imageSize.width, height: self.imageSize.height)
+                .overlay(
+                    Group {
+                        if show,let image = imageHolder.image {
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: self.imageSize.width, height: self.imageSize.height)
+                        }
+                    }
+                )
         }
         .frame(minWidth: .zero, maxWidth: .infinity)
         .onAppear {
