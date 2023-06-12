@@ -11,7 +11,7 @@ import SwiftUI
 struct NewFeaturesOfScrollViewApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ScrollPositionIDDemo()
         }
     }
 }

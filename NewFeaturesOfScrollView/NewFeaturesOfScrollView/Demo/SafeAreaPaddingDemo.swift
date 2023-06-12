@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SafeAreaPaddingDemo: View {
+    @State var items = (0 ..< 500).map { Item(n: $0) }
     var body: some View {
         HStack {
             ZStack(alignment: .bottom) {
