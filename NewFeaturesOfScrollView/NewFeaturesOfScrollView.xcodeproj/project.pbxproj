@@ -20,7 +20,7 @@
 		76C063D42A36D08000BC6762 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C063D32A36D08000BC6762 /* Item.swift */; };
 		76C063D62A36E4E500BC6762 /* ScrollIndicatorsFlashDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C063D52A36E4E500BC6762 /* ScrollIndicatorsFlashDemo.swift */; };
 		76C063D82A36E8AF00BC6762 /* ScrollClipDisableDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C063D72A36E8AF00BC6762 /* ScrollClipDisableDemo.swift */; };
-		76C063DA2A36F03500BC6762 /* ScrollPositionInitialAnchorDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C063D92A36F03500BC6762 /* ScrollPositionInitialAnchorDemo.swift */; };
+		76C063DA2A36F03500BC6762 /* defaultScrollAnchorDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C063D92A36F03500BC6762 /* defaultScrollAnchorDemo.swift */; };
 		76C063DC2A36F81200BC6762 /* ScrollPostionIDDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C063DB2A36F81200BC6762 /* ScrollPostionIDDemo.swift */; };
 		76C063DE2A370E2900BC6762 /* CoordinatorDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C063DD2A370E2900BC6762 /* CoordinatorDemo.swift */; };
 /* End PBXBuildFile section */
@@ -41,7 +41,7 @@
 		76C063D32A36D08000BC6762 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		76C063D52A36E4E500BC6762 /* ScrollIndicatorsFlashDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollIndicatorsFlashDemo.swift; sourceTree = "<group>"; };
 		76C063D72A36E8AF00BC6762 /* ScrollClipDisableDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollClipDisableDemo.swift; sourceTree = "<group>"; };
-		76C063D92A36F03500BC6762 /* ScrollPositionInitialAnchorDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollPositionInitialAnchorDemo.swift; sourceTree = "<group>"; };
+		76C063D92A36F03500BC6762 /* defaultScrollAnchorDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = defaultScrollAnchorDemo.swift; sourceTree = "<group>"; };
 		76C063DB2A36F81200BC6762 /* ScrollPostionIDDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollPostionIDDemo.swift; sourceTree = "<group>"; };
 		76C063DD2A370E2900BC6762 /* CoordinatorDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorDemo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,7 +101,7 @@
 				76C063C82A36B9A800BC6762 /* ContentMarginsForScrollViewDemo.swift */,
 				76C063CF2A36C40200BC6762 /* SafeAreaPaddingDemo.swift */,
 				76C063D12A36CDFA00BC6762 /* ScrollTargetBehaviorDemo.swift */,
-				76C063D92A36F03500BC6762 /* ScrollPositionInitialAnchorDemo.swift */,
+				76C063D92A36F03500BC6762 /* defaultScrollAnchorDemo.swift */,
 				76C063DB2A36F81200BC6762 /* ScrollPostionIDDemo.swift */,
 				76C063D52A36E4E500BC6762 /* ScrollIndicatorsFlashDemo.swift */,
 				76C063D72A36E8AF00BC6762 /* ScrollClipDisableDemo.swift */,
@@ -196,7 +196,7 @@
 				76C063D42A36D08000BC6762 /* Item.swift in Sources */,
 				76C063DC2A36F81200BC6762 /* ScrollPostionIDDemo.swift in Sources */,
 				76C063D02A36C40200BC6762 /* SafeAreaPaddingDemo.swift in Sources */,
-				76C063DA2A36F03500BC6762 /* ScrollPositionInitialAnchorDemo.swift in Sources */,
+				76C063DA2A36F03500BC6762 /* defaultScrollAnchorDemo.swift in Sources */,
 				76C063CC2A36BA2400BC6762 /* CellView.swift in Sources */,
 				76C0639F2A36951000BC6762 /* ContentView.swift in Sources */,
 				76C063D22A36CDFA00BC6762 /* ScrollTargetBehaviorDemo.swift in Sources */,

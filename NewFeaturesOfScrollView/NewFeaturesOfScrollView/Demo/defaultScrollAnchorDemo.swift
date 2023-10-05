@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ScrollPositionInitialAnchorDemo: View {
+struct defaultScrollAnchorDemo: View {
     @State private var show = false
     @State private var position: Position = .leading
     var body: some View {
@@ -51,5 +51,5 @@ struct ScrollPositionInitialAnchorDemo: View {
 }
 
 #Preview {
-    ScrollPositionInitialAnchorDemo()
+    defaultScrollAnchorDemo()
 }
