@@ -16,7 +16,7 @@ struct ScrollTargetBehaviorDemo: View {
             ScrollView {
                 LazyVStack {
                     ForEach(items) { item in
-                        CellView(width: 200, height: 140)
+                        CellView(width: 200, height: 95)
                             .idView(item.n)
                     }
                 }

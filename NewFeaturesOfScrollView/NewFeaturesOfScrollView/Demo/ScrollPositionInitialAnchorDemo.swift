@@ -28,7 +28,7 @@ struct ScrollPositionInitialAnchorDemo: View {
                         }
                     }
                 }
-                .scrollPosition(initialAnchor: position.unitPoint)
+                .defaultScrollAnchor(position.unitPoint)
             }
         }
         .padding()

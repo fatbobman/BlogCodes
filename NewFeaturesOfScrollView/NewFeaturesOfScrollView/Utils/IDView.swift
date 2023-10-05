@@ -25,5 +25,4 @@ extension View {
 
 #Preview {
     CellView()
-        .idView(2)
 }
