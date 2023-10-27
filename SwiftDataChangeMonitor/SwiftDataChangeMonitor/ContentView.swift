@@ -24,6 +24,9 @@ struct ContentView: View {
                 }
                 .onDelete(perform: deleteItems)
             }
+//            .onReceive(NotificationCenter.default.publisher(for: Notification.Name.NSManagedObjectContextObjectsDidChange), perform: {
+//                print($0.userInfo)
+//            })
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
