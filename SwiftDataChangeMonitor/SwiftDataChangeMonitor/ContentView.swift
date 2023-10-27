@@ -24,20 +24,18 @@ struct ContentView: View {
                 }
                 .onDelete(perform: deleteItems)
             }
-//            .onReceive(NotificationCenter.default.publisher(for: Notification.Name.NSManagedObjectContextObjectsDidChange), perform: {
-//                print($0.userInfo)
-//            })
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
                         let container = modelContext.container
                         Task.detached {
                             let handler = PrivateDataHandler(modelContainer: container)
+                            // Set transactionAuthor of PrivateDataHandler's modelContext to mainApp
                             await handler.setAuthorName(name: "Private")
                             await handler.newItem()
                         }
                     } label: {
-                        Text("NewItem")
+                        Text("New Item")
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -74,3 +72,4 @@ struct ContentView: View {
     ContentView()
         .modelContainer(DataProvider.preview.container)
 }
+

@@ -24,13 +24,15 @@ public final class DataProvider: @unchecked Sendable {
         do {
             let container = try ModelContainer(for: schema, configurations: [modelConfiguration])
             self.container = container
+            // Set transactionAuthor of mainContext to mainApp
             Task {
                 await setAuthor(container: container, authorName: "mainApp")
             }
+            // Create DBMonitor to handle persistent historical tracking transactions
             if enableMonitor {
                 Task.detached {
                     self.monitor = DBMonitor(modelContainer: container)
-                    await self.monitor?.register(excludeAuthors: ["mainApp", "abc"])
+                    await self.monitor?.register(excludeAuthors: ["mainApp"])
                 }
             }
         } catch {
@@ -43,3 +45,4 @@ public final class DataProvider: @unchecked Sendable {
         container.mainContext.managedObjectContext?.transactionAuthor = authorName
     }
 }
+
