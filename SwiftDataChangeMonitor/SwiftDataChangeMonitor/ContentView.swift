@@ -30,7 +30,7 @@ struct ContentView: View {
                         let container = modelContext.container
                         Task.detached {
                             let handler = PrivateDataHandler(modelContainer: container)
-                            // Set transactionAuthor of PrivateDataHandler's modelContext to mainApp
+                            // Set transactionAuthor of PrivateDataHandler's modelContext to Private, you can also not set it
                             await handler.setAuthorName(name: "Private")
                             await handler.newItem()
                         }
