@@ -79,3 +79,59 @@ actor CloudDocumentsHandler {
         filePresenters[url] = nil
     }
 }
+
+extension CloudDocumentsHandler {
+    func download(url: URL) throws {
+        var coordinationError: NSError?
+        var downloadError: Error?
+
+        coordinator.coordinate(writingItemAt: url, options: [], error: &coordinationError) { newURL in
+            do {
+                try FileManager.default.startDownloadingUbiquitousItem(at: newURL)
+            } catch {
+                downloadError = error
+            }
+        }
+
+        // 检查下载过程中是否发生了错误
+        if let error = downloadError {
+            throw error
+        }
+
+        // 检查协调过程中是否发生了错误
+        if let coordinationError = coordinationError {
+            throw coordinationError
+        }
+    }
+
+    func evict(url: URL) throws {
+        do {
+            try FileManager.default.evictUbiquitousItem(at: url)
+        } catch {
+            throw error
+        }
+    }
+
+    func moveFile(at sourceURL: URL, to destinationURL: URL) throws {
+        var coordinationError: NSError?
+        var moveError: Error?
+
+        coordinator.coordinate(writingItemAt: sourceURL, options: .forMoving, writingItemAt: destinationURL, options: .forReplacing, error: &coordinationError) { newSourceURL, newDestinationURL in
+            do {
+                try FileManager.default.moveItem(at: newSourceURL, to: newDestinationURL)
+            } catch {
+                moveError = error
+            }
+        }
+
+        // 检查移动过程中是否发生了错误
+        if let error = moveError {
+            throw error
+        }
+
+        // 检查协调过程中是否发生了错误
+        if let coordinationError = coordinationError {
+            throw coordinationError
+        }
+    }
+}

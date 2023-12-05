@@ -91,9 +91,16 @@ struct ContentView: View {
             Button("Get Document File List") {
                 Task {
                     let query = ItemQuery()
-                    for await items in query.searchMetadataItems().throttle(for: .seconds(1), latest: true) {
+                    for await items in query.searchMetadataItems() {
                         items.forEach {
-                            print($0.fileName ?? "", $0.isDirectory)
+                            print($0.fileName ?? "", ":",
+                                  $0.isDirectory, $0.url ?? "url",
+//                                  $0.directoryURL ?? "dirURL",
+//                                  $0.contentType ?? "type",
+                                  "placeHolder:", $0.isPlaceholder,
+                                  "isDownloading:", $0.isDownloading,
+                                  "progress:", $0.downloadProgress,
+                                  "upLoaded:", $0.uploaded)
                         }
                     }
                 }
@@ -115,7 +122,7 @@ struct ContentView: View {
                                                 containerURL.pathComponents.count + 1)
                     for await items in query.searchMetadataItems(predicate: predicate, scopes: [NSMetadataQueryUbiquitousDataScope]).throttle(for: .seconds(1), latest: true) {
                         items.forEach {
-                            print($0.fileName ?? "", $0.isDirectory)
+                            print($0.fileName ?? "")
                         }
                     }
                 }

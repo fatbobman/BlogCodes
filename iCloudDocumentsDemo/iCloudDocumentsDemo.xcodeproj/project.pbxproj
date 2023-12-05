@@ -11,6 +11,7 @@
 		76114F8B2B1D5C2A009296B4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76114F8A2B1D5C2A009296B4 /* ContentView.swift */; };
 		76114F8D2B1D5C2B009296B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76114F8C2B1D5C2B009296B4 /* Assets.xcassets */; };
 		76114F912B1D5C2B009296B4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76114F902B1D5C2B009296B4 /* Preview Assets.xcassets */; };
+		7660AD962B1F49FD00C8511C /* CloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7660AD952B1F49FD00C8511C /* CloudKit.swift */; };
 		76F777B22B1DC1AD007E3054 /* Handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F777B12B1DC1AD007E3054 /* Handler.swift */; };
 		76F777B42B1DC1BF007E3054 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F777B32B1DC1BF007E3054 /* Presenter.swift */; };
 		76F777B62B1DDFA0007E3054 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F777B52B1DDFA0007E3054 /* Query.swift */; };
@@ -25,6 +26,7 @@
 		76114F8E2B1D5C2B009296B4 /* iCloudDocumentsDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iCloudDocumentsDemo.entitlements; sourceTree = "<group>"; };
 		76114F902B1D5C2B009296B4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		76114F972B1D5D23009296B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		7660AD952B1F49FD00C8511C /* CloudKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKit.swift; sourceTree = "<group>"; };
 		76F777B12B1DC1AD007E3054 /* Handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Handler.swift; sourceTree = "<group>"; };
 		76F777B32B1DC1BF007E3054 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
 		76F777B52B1DDFA0007E3054 /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				76114F8C2B1D5C2B009296B4 /* Assets.xcassets */,
 				76114F8E2B1D5C2B009296B4 /* iCloudDocumentsDemo.entitlements */,
 				76114F8F2B1D5C2B009296B4 /* Preview Content */,
+				7660AD952B1F49FD00C8511C /* CloudKit.swift */,
 			);
 			path = iCloudDocumentsDemo;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 				76F777B22B1DC1AD007E3054 /* Handler.swift in Sources */,
 				76114F8B2B1D5C2A009296B4 /* ContentView.swift in Sources */,
 				76F777B42B1DC1BF007E3054 /* Presenter.swift in Sources */,
+				7660AD962B1F49FD00C8511C /* CloudKit.swift in Sources */,
 				76114F892B1D5C2A009296B4 /* iCloudDocumentsDemoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

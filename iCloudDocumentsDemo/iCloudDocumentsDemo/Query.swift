@@ -82,11 +82,10 @@ struct MetadataItemWrapper: Sendable {
     let contentType: String?
     let isDirectory: Bool
     let url: URL?
-    let isPlaceholder:Bool
-    
-    var directoryURL: URL? {
-        url?.deletingLastPathComponent()
-    }
+    let isPlaceholder: Bool
+    let isDownloading: Bool
+    let downloadProgress: Double
+    let uploaded: Bool
 
     init(metadataItem: NSMetadataItem) {
         fileName = metadataItem.value(forAttribute: NSMetadataItemFSNameKey) as? String
@@ -101,7 +100,7 @@ struct MetadataItemWrapper: Sendable {
         }
 
         url = metadataItem.value(forAttribute: NSMetadataItemURLKey) as? URL
-        
+
         if let downloadingStatus = metadataItem.value(forAttribute: NSMetadataUbiquitousItemDownloadingStatusKey) as? String {
             if downloadingStatus == NSMetadataUbiquitousItemDownloadingStatusNotDownloaded {
                 // 文件是占位文件
@@ -110,11 +109,20 @@ struct MetadataItemWrapper: Sendable {
                 // 文件已下载或是最新的
                 isPlaceholder = false
             } else {
-                isPlaceholder = true
+                isPlaceholder = false
             }
         } else {
             // 默认值，假设文件不是占位文件
             isPlaceholder = false
         }
+
+        // 获取下载进度
+        downloadProgress = metadataItem.value(forAttribute: NSMetadataUbiquitousItemPercentDownloadedKey) as? Double ?? 0.0
+
+        // 如果是占位文件且下载进度大于0且小于100，则认为文件正在下载
+        isDownloading = isPlaceholder && downloadProgress > 0.0 && downloadProgress < 100.0
+
+        // 是否已经上传完毕(只有 0 和 100 两个状态)
+        uploaded = (metadataItem.value(forAttribute: NSMetadataUbiquitousItemPercentUploadedKey) as? Double ?? 0.0) == 100
     }
 }
