@@ -84,6 +84,7 @@ struct MetadataItemWrapper: Sendable {
     let isDownloading: Bool
     let downloadAmount: Double?
     let isDirectory: Bool
+    let isUploaded: Bool
 
     init(metadataItem: NSMetadataItem) {
         fileName = metadataItem.value(forAttribute: NSMetadataItemFSNameKey) as? String
@@ -106,5 +107,10 @@ struct MetadataItemWrapper: Sendable {
         } else {
             isDirectory = false
         }
+
+        // 检查文件是否已经上传成功或已经保存在云端
+        let uploaded = metadataItem.value(forAttribute: NSMetadataUbiquitousItemIsUploadedKey) as? Bool ?? false
+        let uploading = metadataItem.value(forAttribute: NSMetadataUbiquitousItemIsUploadingKey) as? Bool ?? true
+        isUploaded = uploaded && !uploading
     }
 }
