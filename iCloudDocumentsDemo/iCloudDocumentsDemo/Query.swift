@@ -80,26 +80,18 @@ struct MetadataItemWrapper: Sendable {
     let fileName: String?
     let fileSize: Int?
     let contentType: String?
-    let isPlaceholder: Bool
-    let isDownloading: Bool
-    let downloadAmount: Double?
     let isDirectory: Bool
-    let isUploaded: Bool
+    let url: URL?
+    let isPlaceholder:Bool
+    
+    var directoryURL: URL? {
+        url?.deletingLastPathComponent()
+    }
 
     init(metadataItem: NSMetadataItem) {
         fileName = metadataItem.value(forAttribute: NSMetadataItemFSNameKey) as? String
         fileSize = metadataItem.value(forAttribute: NSMetadataItemFSSizeKey) as? Int
         contentType = metadataItem.value(forAttribute: NSMetadataItemContentTypeKey) as? String
-
-        // 是否是占位文件
-        isPlaceholder = metadataItem.value(forAttribute: NSMetadataUbiquitousItemDownloadingStatusKey) as? Bool ?? false
-
-        // 当前下载量
-        downloadAmount = metadataItem.value(forAttribute: NSMetadataUbiquitousItemPercentDownloadedKey) as? Double
-
-        // 是否正在下载
-        let downloadStatus = metadataItem.value(forAttribute: NSMetadataUbiquitousItemIsDownloadingKey) as? String
-        isDownloading = downloadStatus == NSMetadataUbiquitousItemDownloadingStatusCurrent
 
         // 检查是否是目录
         if let contentType = metadataItem.value(forAttribute: NSMetadataItemContentTypeKey) as? String {
@@ -108,9 +100,21 @@ struct MetadataItemWrapper: Sendable {
             isDirectory = false
         }
 
-        // 检查文件是否已经上传成功或已经保存在云端
-        let uploaded = metadataItem.value(forAttribute: NSMetadataUbiquitousItemIsUploadedKey) as? Bool ?? false
-        let uploading = metadataItem.value(forAttribute: NSMetadataUbiquitousItemIsUploadingKey) as? Bool ?? true
-        isUploaded = uploaded && !uploading
+        url = metadataItem.value(forAttribute: NSMetadataItemURLKey) as? URL
+        
+        if let downloadingStatus = metadataItem.value(forAttribute: NSMetadataUbiquitousItemDownloadingStatusKey) as? String {
+            if downloadingStatus == NSMetadataUbiquitousItemDownloadingStatusNotDownloaded {
+                // 文件是占位文件
+                isPlaceholder = true
+            } else if downloadingStatus == NSMetadataUbiquitousItemDownloadingStatusDownloaded || downloadingStatus == NSMetadataUbiquitousItemDownloadingStatusCurrent {
+                // 文件已下载或是最新的
+                isPlaceholder = false
+            } else {
+                isPlaceholder = true
+            }
+        } else {
+            // 默认值，假设文件不是占位文件
+            isPlaceholder = false
+        }
     }
 }
