@@ -27,11 +27,11 @@ struct ContentView: View {
             Group {
                 Button("Create File in Documents") {
                     Task.detached {
-                        let hander = self.handler
+                        let handler = self.handler
                         guard let documentURL else { fatalError() }
                         let fileURL = documentURL.appending(path: "hello.txt")
                         do {
-                            try await hander.write(targetURL: fileURL, data: "hello world".data(using: .utf8)!)
+                            try await handler.write(targetURL: fileURL, data: "hello world".data(using: .utf8)!)
                         } catch {
                             print(error)
                         }
